@@ -7,8 +7,8 @@ This plugin provides various features to enhance your Minecraft server experienc
 ### Features:
 
 #### 🛡️ **Grief Prevention:**
-- **Block Break Protection**: Prevents players from breaking blocks in protected areas.
-- **Block Placement Protection**: Restricts block placement in protected regions.
+- **Block Break Protection**: Prevents players from breaking blocks.
+- **Block Placement Protection**: Prevents block placements by players.
 
 ---
 
