@@ -28,7 +28,7 @@ public class PlayerCommands implements Listener {
 
             if (command.startsWith("caninteractwithblocks")) {
                 CanPlaceBlocks canPlaceBlocks = new CanPlaceBlocks();
-                canPlaceBlocks.check(command, player);
+                canPlaceBlocks.update(command, player);
             }
 
             if (command.equals("getmemory")) {

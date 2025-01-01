@@ -14,7 +14,7 @@ public class CanPlaceBlocks {
         memoryStorage = Mccontrol.getInstance().getMemoryStorage();
     }
 
-    public void check(String command, Player player) {
+    public void update(String command, Player player) {
         McPlayer playerData = new McPlayer(player);
 
         if (command.contains("false")) {
