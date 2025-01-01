@@ -26,7 +26,7 @@ public class BlockBreakListener implements Listener {
     public boolean load() {
         try {
             PluginManager pluginManager = Mccontrol.getInstance().getPluginManager();
-            pluginManager.registerEvents(new BlockBreakListener(), Mccontrol.getInstance());
+            pluginManager.registerEvents(this, Mccontrol.getInstance());
             return true;
         } catch (Exception e) {
             return false;

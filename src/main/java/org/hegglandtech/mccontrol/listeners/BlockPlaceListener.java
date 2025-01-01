@@ -25,7 +25,7 @@ public class BlockPlaceListener implements Listener {
     public boolean load() {
         try {
             PluginManager pluginManager = Mccontrol.getInstance().getPluginManager();
-            pluginManager.registerEvents(new BlockPlaceListener(), Mccontrol.getInstance());
+            pluginManager.registerEvents(this, Mccontrol.getInstance());
             return true;
         } catch (Exception e) {
             return false;

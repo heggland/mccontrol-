@@ -27,7 +27,6 @@ public class PlayerCommands implements Listener {
             command = command.replace("/mccontrol:", "");
 
             if (command.startsWith("caninteractwithblocks")) {
-                event.setCancelled(true);
                 CanPlaceBlocks canPlaceBlocks = new CanPlaceBlocks();
                 canPlaceBlocks.check(command, player);
             }
@@ -41,7 +40,7 @@ public class PlayerCommands implements Listener {
     public boolean load() {
         try {
             PluginManager pluginManager = Mccontrol.getInstance().getPluginManager();
-            pluginManager.registerEvents(new PlayerCommands(), Mccontrol.getInstance());
+            pluginManager.registerEvents(this, Mccontrol.getInstance());
             return true;
         } catch (Exception e) {
             return false;
