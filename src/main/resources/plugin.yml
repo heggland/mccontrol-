@@ -12,7 +12,11 @@ permissions:
     default: false
 
 commands:
-  canplaceblock:
+  caninteractwithblocks:
     description: Grants the block placement permission to a player.
-    usage: /canplaceblock <player> <true|false>
+    usage: /mccontrol caninteractwithblocks <player> <true/false>
+    permission: mccontrol.isadmin
+  getmemory:
+    description: Get the memory
+    usage: /mccontrol getmemory
     permission: mccontrol.isadmin

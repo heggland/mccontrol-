@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 
 public class Storage {
 
@@ -13,7 +14,6 @@ public class Storage {
     // No-argument constructor that defaults to "mccontrol-config.txt"
     public Storage() {
         this("mccontrol-config.txt"); // Call the parameterized constructor with the default file path
-        System.out.println("Storage constructor");
     }
 
     public Storage(String filePath) {
@@ -85,6 +85,31 @@ public class Storage {
         }
     }
 
+    public boolean clearFile() {
+        try {
+            if (!file.exists()) {
+                if (file.getParentFile() != null && !file.getParentFile().exists()) {
+                    boolean dirsCreated = file.getParentFile().mkdirs();
+                    if (!dirsCreated) {
+                        throw new IOException("Failed to create parent directories for file: " + file.getPath());
+                    }
+                }
+
+                boolean fileCreated = file.createNewFile();
+                if (!fileCreated) {
+                    throw new IOException("Failed to create the file: " + file.getPath());
+                }
+            }
+
+            try (FileWriter writer = new FileWriter(file)) {
+                writer.write("");
+            }
+            return true;
+        } catch (IOException e) {
+            throw new RuntimeException("Could not write to file: " + file.getPath(), e);
+        }
+    }
+
     /**
      * Reads the content of the file. Creates the file if it does not exist.
      *
@@ -112,14 +137,19 @@ public class Storage {
         } catch (IOException e) {
             throw new RuntimeException("Could not read from file: " + file.getPath(), e);
         }
+
     }
 
     /**
-     * Gets the file object being managed by this storage.
+     * Reads the file and returns its content as a List<String>, where each line is an element of the list.
      *
-     * @return The File object.
+     * @return The content of the file as a List<String>.
      */
-    public File getFile() {
-        return file;
+    protected List<String> readFile() {
+        try {
+            return Files.readAllLines(Path.of(file.getPath()));
+        } catch (IOException e) {
+            throw new RuntimeException("Could not read lines from file: " + file.getPath(), e);
+        }
     }
 }
