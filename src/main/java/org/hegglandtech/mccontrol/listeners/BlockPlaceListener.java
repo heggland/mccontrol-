@@ -4,6 +4,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.plugin.PluginManager;
+import org.hegglandtech.mccontrol.Mccontrol;
 import org.hegglandtech.mccontrol.utils.BlockPlaceBreak;
 
 public class BlockPlaceListener implements Listener {
@@ -19,4 +21,15 @@ public class BlockPlaceListener implements Listener {
             event.setCancelled(true);
         }
     }
+
+    public boolean load() {
+        try {
+            PluginManager pluginManager = Mccontrol.getInstance().getPluginManager();
+            pluginManager.registerEvents(new BlockPlaceListener(), Mccontrol.getInstance());
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
 }

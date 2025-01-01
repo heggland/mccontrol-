@@ -4,6 +4,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+import org.bukkit.plugin.PluginManager;
 import org.hegglandtech.mccontrol.Mccontrol;
 import org.hegglandtech.mccontrol.utils.CanPlaceBlocks;
 import org.hegglandtech.mccontrol.storage.MemoryStorage;
@@ -37,6 +38,15 @@ public class PlayerCommands implements Listener {
             }
         }
 
+    public boolean load() {
+        try {
+            PluginManager pluginManager = Mccontrol.getInstance().getPluginManager();
+            pluginManager.registerEvents(new PlayerCommands(), Mccontrol.getInstance());
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
 }
 
