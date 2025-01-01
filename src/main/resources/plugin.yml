@@ -4,19 +4,16 @@ main: org.hegglandtech.mccontrol.Mccontrol
 api-version: '1.21'
 
 permissions:
-  mccontrol.isadmin:
+  mccontrol.admin:
     description: Allows the player to use all commands.
     default: op
-  mccontrol.placeblock:
-    description: Allows players to place blocks.
-    default: false
 
 commands:
   caninteractwithblocks:
     description: Grants the block placement permission to a player.
     usage: /mccontrol caninteractwithblocks <player> <true/false>
-    permission: mccontrol.isadmin
+    permission: mccontrol.admin
   getmemory:
     description: Get the memory
     usage: /mccontrol getmemory
-    permission: mccontrol.isadmin
+    permission: mccontrol.admin
