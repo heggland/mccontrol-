@@ -4,9 +4,11 @@ public class listeners {
 
     public listeners() {
 
-        new PlayerCommands().load();
-        new BlockPlaceListener().load();
-        new BlockBreakListener().load();
+        new onCommandPlayerListener().load();
+        new onBlockPlaceListener().load();
+        new onBlockBreakListener().load();
+        new onEntityInteractListener().load();
+        new onPlayerInteractListener().load();
 
     }
 

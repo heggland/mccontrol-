@@ -9,12 +9,13 @@ import org.hegglandtech.mccontrol.Mccontrol;
 import org.hegglandtech.mccontrol.utils.BlockPlaceBreak;
 
 
-public class BlockBreakListener implements Listener {
+public class onBlockBreakListener implements Listener {
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
-        BlockPlaceBreak blockPlaceBreak = new BlockPlaceBreak();
         Player player = event.getPlayer();
+
+        BlockPlaceBreak blockPlaceBreak = new BlockPlaceBreak();
         blockPlaceBreak.validate(player);
 
         if (!blockPlaceBreak.validate(player)) {

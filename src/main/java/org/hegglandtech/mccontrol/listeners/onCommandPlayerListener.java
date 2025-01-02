@@ -9,7 +9,7 @@ import org.hegglandtech.mccontrol.Mccontrol;
 import org.hegglandtech.mccontrol.utils.CanPlaceBlocks;
 import org.hegglandtech.mccontrol.storage.MemoryStorage;
 
-public class PlayerCommands implements Listener {
+public class onCommandPlayerListener implements Listener {
 
     @EventHandler
         public void onCommand(PlayerCommandPreprocessEvent event) {

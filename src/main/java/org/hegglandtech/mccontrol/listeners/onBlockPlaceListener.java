@@ -8,7 +8,7 @@ import org.bukkit.plugin.PluginManager;
 import org.hegglandtech.mccontrol.Mccontrol;
 import org.hegglandtech.mccontrol.utils.BlockPlaceBreak;
 
-public class BlockPlaceListener implements Listener {
+public class onBlockPlaceListener implements Listener {
 
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event) {

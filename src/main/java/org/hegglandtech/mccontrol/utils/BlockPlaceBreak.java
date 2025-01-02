@@ -17,9 +17,6 @@ public class BlockPlaceBreak {
     public boolean validate(Player player) {
         List<String> memory = memoryStorage.getMemory();
 
-        System.out.println("Player interacted with block: " + player.getUniqueId());
-        System.out.println("Memory: " + memory);
-
         if (memory == null || memory.isEmpty()) {
             return true;
         }
@@ -30,7 +27,6 @@ public class BlockPlaceBreak {
                 .orElse(null);
 
         if (playerEntry != null) {
-            System.out.println("Player is in memory: " + playerEntry);
             return McPlayer.canInteractWithBlocks(playerEntry);
         } else {
             return false;
