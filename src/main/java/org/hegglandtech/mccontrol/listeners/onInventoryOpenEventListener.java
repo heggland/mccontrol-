@@ -28,7 +28,7 @@ public class onInventoryOpenEventListener implements Listener {
                 blockPlaceBreak.validate(player);
 
                 if (!blockPlaceBreak.validate(player)) {
-                    player.sendMessage("You are not allowed" + type + "!");
+                    player.sendMessage("You are not allowed to open " + type + "!");
                     event.setCancelled(true);
                     break;
                 }
