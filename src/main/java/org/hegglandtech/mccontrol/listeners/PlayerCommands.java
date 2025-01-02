@@ -27,8 +27,17 @@ public class PlayerCommands implements Listener {
             command = command.replace("/mccontrol:", "");
 
             if (command.startsWith("caninteractwithblocks")) {
+
+                if (command.split(" ").length != 3) {
+                    player.sendMessage("Usage: /mccontrol:caninteractwithblocks <playername> <true/false>");
+                    return;
+                }
+
+                String playerName = command.split(" ")[1];
+                boolean canInteract = Boolean.parseBoolean(command.split(" ")[2]);
+
                 CanPlaceBlocks canPlaceBlocks = new CanPlaceBlocks();
-                canPlaceBlocks.update(command, player);
+                canPlaceBlocks.update(playerName, canInteract);
             }
 
             if (command.equals("getmemory")) {

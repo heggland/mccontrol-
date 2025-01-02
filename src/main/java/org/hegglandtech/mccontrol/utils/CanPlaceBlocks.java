@@ -14,10 +14,17 @@ public class CanPlaceBlocks {
         memoryStorage = Mccontrol.getInstance().getMemoryStorage();
     }
 
-    public void update(String command, Player player) {
+    public void update(String playerName, boolean canInteract) {
+        Player player = Mccontrol.getInstance().getServer().getPlayer(playerName);
+
+        if (player == null) {
+            Mccontrol.getInstance().getLogger().warning("Player " + playerName + " not found.");
+            return;
+        }
+
         McPlayer playerData = new McPlayer(player);
 
-        if (command.contains("false")) {
+        if (!canInteract) {
             setCanPlaceBlocks(playerData, false);
             player.sendMessage(player.getName() + " has been blocked from placing blocks.");
             return;
