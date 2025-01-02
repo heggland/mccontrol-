@@ -12,7 +12,11 @@ public class MemoryStorage extends Storage {
     }
 
     public void loadMemory() {
-        this.memory = super.readFile();
+
+        List<String> file = super.readFile();
+
+        file.forEach(this::updateMemory);
+
     }
 
     public List<String> getMemory() {
