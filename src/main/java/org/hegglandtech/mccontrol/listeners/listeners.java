@@ -9,7 +9,6 @@ public class listeners {
         new onBlockBreakListener().load();
         new onBucketEmptyListener().load();
         new onEntityInteractListener().load();
-        new onPlayerInteractListener().load();
         new onInventoryOpenEventListener().load();
 
     }
