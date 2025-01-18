@@ -21,7 +21,7 @@ public class PlayerTest extends Player {
         List<String> memory = memoryStorage.getMemory();
 
         if (memory == null || memory.isEmpty()) {
-            return true;
+            return false;
         }
 
         String playerEntry = memory.stream()
