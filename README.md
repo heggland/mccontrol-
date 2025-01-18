@@ -4,15 +4,23 @@
 
 This plugin provides various features to enhance your Minecraft server experience with security, protection, and a few upcoming utilities.
 
+### Usage:
+- mccontrol caninteractwithblocks <player> <true/false>
+
 ### Features:
 
 #### 🛡️ **Grief Prevention:**
-- **Block Break Protection**: Prevents players from breaking blocks.
-- **Block Placement Protection**: Prevents block placements by players.
+- **Block Break Protection**: Prevents players from breaking specific blocks.
+- **Block Placement Protection**: Prevents specific blocks placements by players.
 
+#### 🎭 **4 fun:**
+- when killing an animal, a message will be sent to the player saying "you killed an innocent animal"
 ---
 
 ### 🚀 **Roadmap:**
+
+#### 🔮 **Store player data:**
+- Store individual features on the player
 
 #### 🔮 **Teleportation:**
 - Set Homes: Players can set and store multiple homes.
@@ -20,26 +28,16 @@ This plugin provides various features to enhance your Minecraft server experienc
 - Teleport to Players: Teleport directly to other players on the server.
 - Teleport to Spawn: Instantly teleport to the spawn location.
 
-#### 💰 **Economy (Planned):**
-- Earn currency based on time spent on the server.
-- Use the earned currency for in-game security features.
 
 #### 🔒 **Security:**
 - **Land Protection**:
-    - Claim and protect land from griefers.
+    - Claim and protect land.
     - Trust specific players to interact within your land.
+    - lock doors.
 - **Chest Protection**:
     - Prevent unauthorized access to your chests.
     - Allow players to trust others for chest access.
-- **Door Locking**:
-    - Lock doors to keep unwanted players out.
-    - Trust specific players to open the locked doors.
-
 ---
-
-### 🌟 **Extras / Other Ideas:**
-- **Tree Cutter Enchantment (Optional)**:
-    - Enchant an axe to allow players to cut down a fully grown tree with a single swing. This enchantment breaks all connected tree blocks, including wood and leaves, making tree cutting faster and more efficient.
 
 
 This plugin is designed to improve server security, enhance player interaction, and create a more enjoyable experience. Stay tuned for more updates and features!
