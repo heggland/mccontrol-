@@ -1,28 +1,27 @@
 package org.hegglandtech.mccontrol.utils;
 
-import org.bukkit.entity.Player;
 import org.hegglandtech.mccontrol.Mccontrol;
 import org.hegglandtech.mccontrol.storage.MemoryStorage;
 
 import java.util.List;
 
-public class CanPlaceBlocks {
+public class PlayerPermission {
 
     private static MemoryStorage memoryStorage = null;
 
-    public CanPlaceBlocks() {
+    public PlayerPermission() {
         memoryStorage = Mccontrol.getInstance().getMemoryStorage();
     }
 
     public void update(String playerName, boolean canInteract) {
-        Player player = Mccontrol.getInstance().getServer().getPlayer(playerName);
+        org.bukkit.entity.Player player = Mccontrol.getInstance().getServer().getPlayer(playerName);
 
         if (player == null) {
             Mccontrol.getInstance().getLogger().warning("Player " + playerName + " not found.");
             return;
         }
 
-        McPlayer playerData = new McPlayer(player);
+        Player playerData = new Player(player);
 
         if (!canInteract) {
             setCanPlaceBlocks(playerData, false);
@@ -35,7 +34,7 @@ public class CanPlaceBlocks {
     }
 
 
-    private static void setCanPlaceBlocks(McPlayer playerData, boolean value) {
+    private static void setCanPlaceBlocks(Player playerData, boolean value) {
         playerData.setCanInteractWithBlocks(value);
 
         List<String> memory = memoryStorage.getMemory();

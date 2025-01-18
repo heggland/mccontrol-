@@ -7,7 +7,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.plugin.PluginManager;
 import org.hegglandtech.mccontrol.Mccontrol;
-import org.hegglandtech.mccontrol.utils.BlockPlaceBreak;
+import org.hegglandtech.mccontrol.utils.PlayerTest;
 
 import java.util.EnumSet;
 
@@ -27,9 +27,9 @@ public class onBucketEmptyListener implements Listener {
 
         Player player = event.getPlayer();
 
-        BlockPlaceBreak blockPlaceBreak = new BlockPlaceBreak();
+        PlayerTest playerTest = new PlayerTest();
 
-        boolean canPlace = blockPlaceBreak.validate(player);
+        boolean canPlace = playerTest.validate(player);
 
         if (!canPlace) {
             player.sendMessage("You are not allowed to this bucket fluid.");

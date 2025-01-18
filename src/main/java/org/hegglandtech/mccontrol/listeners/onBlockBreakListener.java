@@ -6,7 +6,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.plugin.PluginManager;
 import org.hegglandtech.mccontrol.Mccontrol;
-import org.hegglandtech.mccontrol.utils.BlockPlaceBreak;
+import org.hegglandtech.mccontrol.utils.PlayerTest;
 
 
 public class onBlockBreakListener implements Listener {
@@ -15,10 +15,10 @@ public class onBlockBreakListener implements Listener {
     public void onBlockBreak(BlockBreakEvent event) {
         Player player = event.getPlayer();
 
-        BlockPlaceBreak blockPlaceBreak = new BlockPlaceBreak();
-        blockPlaceBreak.validate(player);
+        PlayerTest playerTest = new PlayerTest();
+        playerTest.validate(player);
 
-        if (!blockPlaceBreak.validate(player)) {
+        if (!playerTest.validate(player)) {
             player.sendMessage("You are not allowed to break blocks");
             event.setCancelled(true);
         }

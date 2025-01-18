@@ -6,7 +6,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.plugin.PluginManager;
 import org.hegglandtech.mccontrol.Mccontrol;
-import org.hegglandtech.mccontrol.utils.CanPlaceBlocks;
+import org.hegglandtech.mccontrol.utils.PlayerPermission;
 import org.hegglandtech.mccontrol.storage.MemoryStorage;
 
 public class onCommandPlayerListener implements Listener {
@@ -36,8 +36,8 @@ public class onCommandPlayerListener implements Listener {
                 String playerName = command.split(" ")[1];
                 boolean canInteract = Boolean.parseBoolean(command.split(" ")[2]);
 
-                CanPlaceBlocks canPlaceBlocks = new CanPlaceBlocks();
-                canPlaceBlocks.update(playerName, canInteract);
+                PlayerPermission playerPermission = new PlayerPermission();
+                playerPermission.update(playerName, canInteract);
             }
 
             if (command.equals("getmemory")) {

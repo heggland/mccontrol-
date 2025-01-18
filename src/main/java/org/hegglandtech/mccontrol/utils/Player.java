@@ -1,25 +1,23 @@
 package org.hegglandtech.mccontrol.utils;
 
-import org.bukkit.entity.Player;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class McPlayer {
+public class Player {
 
     private final String uuid;
     private final String name;
     private final String modifiedDate;
     private boolean canInteractWithBlocks;
 
-    public McPlayer(Player player) {
+    public Player(org.bukkit.entity.Player player) {
         this.uuid = player.getUniqueId().toString();
         this.name = player.getName();
         this.modifiedDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
         this.canInteractWithBlocks = true;
     }
 
-    public McPlayer(String uuid, String name, String startDate, boolean canInteractWithBlocks) {
+    public Player(String uuid, String name, String startDate, boolean canInteractWithBlocks) {
         this.uuid = uuid;
         this.name = name;
         this.modifiedDate = startDate;

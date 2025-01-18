@@ -7,7 +7,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.plugin.PluginManager;
 import org.hegglandtech.mccontrol.Mccontrol;
-import org.hegglandtech.mccontrol.utils.BlockPlaceBreak;
+import org.hegglandtech.mccontrol.utils.PlayerTest;
 
 public class onPlayerInteractListener implements Listener {
 
@@ -26,10 +26,10 @@ public class onPlayerInteractListener implements Listener {
     public void onPlayerAttackPlayer(EntityDamageByEntityEvent event) {
         if (event.getEntity() instanceof Player player && event.getDamager() instanceof Player attacker) {
 
-            BlockPlaceBreak blockPlaceBreak = new BlockPlaceBreak();
-            blockPlaceBreak.validate(player);
+            PlayerTest playerTest = new PlayerTest();
+            playerTest.validate(player);
 
-            if (!blockPlaceBreak.validate(player)) {
+            if (!playerTest.validate(player)) {
                 player.sendMessage("You are not allowed to attack other players");
                 event.setCancelled(true);
             }

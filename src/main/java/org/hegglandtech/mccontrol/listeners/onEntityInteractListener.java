@@ -8,7 +8,7 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.plugin.PluginManager;
 import org.hegglandtech.mccontrol.Mccontrol;
-import org.hegglandtech.mccontrol.utils.BlockPlaceBreak;
+import org.hegglandtech.mccontrol.utils.PlayerTest;
 
 import java.util.EnumSet;
 
@@ -54,10 +54,10 @@ public class onEntityInteractListener implements Listener {
         if (ANIMAL_TYPES.contains(event.getEntity().getType()) && event.getDamager() instanceof Player) {
             Player player = (Player) event.getDamager();
 
-            BlockPlaceBreak blockPlaceBreak = new BlockPlaceBreak();
-            blockPlaceBreak.validate(player);
+            PlayerTest playerTest = new PlayerTest();
+            playerTest.validate(player);
 
-            if (!blockPlaceBreak.validate(player)) {
+            if (!playerTest.validate(player)) {
                 player.sendMessage("You are not allowed to attack innocent animals!");
                 event.setCancelled(true);
             }
