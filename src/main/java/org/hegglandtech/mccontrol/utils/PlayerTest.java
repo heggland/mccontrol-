@@ -30,7 +30,8 @@ public class PlayerTest extends Player {
                 .orElse(null);
 
         if (playerEntry != null) {
-            return Player.canInteractWithBlocks(playerEntry);
+            Player playerData = new Player(playerEntry);
+            return playerData.canInteractWithBlocks();
         } else {
             return false;
         }
