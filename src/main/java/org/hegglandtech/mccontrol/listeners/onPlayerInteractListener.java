@@ -26,10 +26,9 @@ public class onPlayerInteractListener implements Listener {
     public void onPlayerAttackPlayer(EntityDamageByEntityEvent event) {
         if (event.getEntity() instanceof Player player && event.getDamager() instanceof Player attacker) {
 
-            PlayerTest playerTest = new PlayerTest();
-            playerTest.validate(player);
+            PlayerTest playerTest = new PlayerTest(player);
 
-            if (!playerTest.validate(player)) {
+            if (!playerTest.validate()) {
                 player.sendMessage("You are not allowed to attack other players");
                 event.setCancelled(true);
             }

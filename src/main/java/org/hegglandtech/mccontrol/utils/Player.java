@@ -24,6 +24,7 @@ public class Player {
         this.canInteractWithBlocks = canInteractWithBlocks;
     }
 
+
     public String getUuid() {
         return uuid;
     }

@@ -54,10 +54,9 @@ public class onEntityInteractListener implements Listener {
         if (ANIMAL_TYPES.contains(event.getEntity().getType()) && event.getDamager() instanceof Player) {
             Player player = (Player) event.getDamager();
 
-            PlayerTest playerTest = new PlayerTest();
-            playerTest.validate(player);
+            PlayerTest playerTest = new PlayerTest(player);
 
-            if (!playerTest.validate(player)) {
+            if (!playerTest.validate()) {
                 player.sendMessage("You are not allowed to attack innocent animals!");
                 event.setCancelled(true);
             }

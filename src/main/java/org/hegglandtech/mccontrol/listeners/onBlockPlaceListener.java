@@ -12,9 +12,9 @@ public class onBlockPlaceListener implements Listener {
 
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event) {
-        PlayerTest playerTest = new PlayerTest();
         Player player = event.getPlayer();
-        boolean test = playerTest.validate(player);
+        PlayerTest playerTest = new PlayerTest(player);
+        boolean test = playerTest.validate();
 
         if (!test) {
             player.sendMessage("You are not allowed to place blocks");

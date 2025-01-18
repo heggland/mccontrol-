@@ -24,10 +24,9 @@ public class onInventoryOpenEventListener implements Listener {
         for (InventoryType validType : InventoryType.values()) {
             if (type == validType) {
 
-                PlayerTest playerTest = new PlayerTest();
-                playerTest.validate(player);
+                PlayerTest playerTest = new PlayerTest(player);
 
-                if (!playerTest.validate(player)) {
+                if (!playerTest.validate()) {
                     player.sendMessage("You are not allowed to open " + type + "!");
                     event.setCancelled(true);
                     break;

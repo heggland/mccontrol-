@@ -15,10 +15,9 @@ public class onBlockBreakListener implements Listener {
     public void onBlockBreak(BlockBreakEvent event) {
         Player player = event.getPlayer();
 
-        PlayerTest playerTest = new PlayerTest();
-        playerTest.validate(player);
+        PlayerTest playerTest = new PlayerTest(player);
 
-        if (!playerTest.validate(player)) {
+        if (!playerTest.validate()) {
             player.sendMessage("You are not allowed to break blocks");
             event.setCancelled(true);
         }

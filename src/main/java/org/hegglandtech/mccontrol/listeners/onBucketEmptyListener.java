@@ -27,9 +27,9 @@ public class onBucketEmptyListener implements Listener {
 
         Player player = event.getPlayer();
 
-        PlayerTest playerTest = new PlayerTest();
+        PlayerTest playerTest = new PlayerTest(player);
 
-        boolean canPlace = playerTest.validate(player);
+        boolean canPlace = playerTest.validate();
 
         if (!canPlace) {
             player.sendMessage("You are not allowed to this bucket fluid.");

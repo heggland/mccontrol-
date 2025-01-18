@@ -5,15 +5,19 @@ import org.hegglandtech.mccontrol.storage.MemoryStorage;
 
 import java.util.List;
 
-public class PlayerTest {
+public class PlayerTest extends Player {
 
-    private final MemoryStorage memoryStorage;
+    private final org.bukkit.entity.Player player;
 
-    public PlayerTest() {
-        this.memoryStorage = Mccontrol.getInstance().getMemoryStorage();
+    public PlayerTest(org.bukkit.entity.Player player) {
+        super(player);
+        this.player = player;
     }
 
-    public boolean validate(org.bukkit.entity.Player player) {
+    public boolean validate() {
+
+        MemoryStorage memoryStorage = Mccontrol.getInstance().getMemoryStorage();
+
         List<String> memory = memoryStorage.getMemory();
 
         if (memory == null || memory.isEmpty()) {
