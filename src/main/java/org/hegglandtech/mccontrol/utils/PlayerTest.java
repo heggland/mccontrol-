@@ -1,5 +1,6 @@
 package org.hegglandtech.mccontrol.utils;
 
+import org.bukkit.plugin.PluginManager;
 import org.hegglandtech.mccontrol.Mccontrol;
 import org.hegglandtech.mccontrol.storage.MemoryStorage;
 
@@ -15,6 +16,10 @@ public class PlayerTest extends Player {
     }
 
     public boolean validate() {
+        return validate(false);
+    }
+
+    public boolean validate(Boolean debug) {
 
         MemoryStorage memoryStorage = Mccontrol.getInstance().getMemoryStorage();
 
@@ -31,9 +36,11 @@ public class PlayerTest extends Player {
 
         if (playerEntry != null) {
             Player playerData = new Player(playerEntry);
-            return playerData.canInteractWithBlocks();
-        } else {
-            return false;
+            if (playerData.canInteractWithBlocks()) return true;
         }
+
+        new PlayerLogger(player).print("player is not validated and event was cancelled");
+
+        return false;
     }
 }
