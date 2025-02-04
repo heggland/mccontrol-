@@ -6,7 +6,7 @@ import java.util.Date;
 public class Player {
 
     private String uuid;
-    private String name;
+    public String name;
     private String modifiedDate;
     private boolean canInteractWithBlocks;
 
@@ -64,7 +64,6 @@ public class Player {
             throw new IllegalArgumentException("Error parsing playerEntry: " + playerEntry, e);
         }
     }
-
 
     public String getUuid() {
         return uuid;
