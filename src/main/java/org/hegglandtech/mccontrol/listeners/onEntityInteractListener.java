@@ -36,7 +36,8 @@ public class onEntityInteractListener implements Listener {
             EntityType.GOAT,
             EntityType.CAMEL,
             EntityType.FROG,
-            EntityType.SNIFFER
+            EntityType.SNIFFER,
+            EntityType.PLAYER
     );
 
     @EventHandler
