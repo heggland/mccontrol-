@@ -1,11 +1,15 @@
 package org.hegglandtech.mccontrol.listeners;
 
+import org.bukkit.entity.Arrow;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.plugin.PluginManager;
 import org.hegglandtech.mccontrol.Mccontrol;
 import org.hegglandtech.mccontrol.utils.PlayerTest;
@@ -63,6 +67,15 @@ public class onEntityInteractListener implements Listener {
             }
         }
     }
+
+    @EventHandler
+    public void onArrowShoot(ProjectileLaunchEvent event) {
+        if (event.getEntity() instanceof Arrow arrow && arrow.getShooter() instanceof Player player) {
+            player.sendMessage("You are not allowed to shoot arrows!");
+            event.setCancelled(true);
+        }
+    }
+
 
     public boolean load() {
         try {
