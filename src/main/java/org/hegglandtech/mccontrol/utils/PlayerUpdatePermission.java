@@ -24,6 +24,10 @@ public class PlayerUpdatePermission {
         LoadPlayerFromMemory loadPlayerFromMemory = new LoadPlayerFromMemory();
         Player playerData = loadPlayerFromMemory.getPlayer(player);
 
+        if (playerData == null) {
+            playerData = new Player(player);
+        }
+
         if (action.equals("grant")) {
             playerData.setPermission(Player_Permission.valueOf(permission));
             player.sendMessage(player.getName() + " has been granted the permission " + permission);
