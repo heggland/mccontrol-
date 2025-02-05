@@ -1,5 +1,5 @@
 name: mccontrol
-version: '1.0'
+version: '1.1'
 main: org.hegglandtech.mccontrol.Mccontrol
 api-version: '1.21'
 
@@ -9,11 +9,11 @@ permissions:
     default: op
 
 commands:
-  caninteractwithblocks:
+  permission:
     description: Grants the block placement permission to a player.
-    usage: /mccontrol caninteractwithblocks <player> <true/false>
+    usage: permission <canBuild|canPvp> grant|revoke playername
     permission: mccontrol.admin
   getmemory:
     description: Get the memory
-    usage: /mccontrol getmemory
+    usage: getmemory
     permission: mccontrol.admin
