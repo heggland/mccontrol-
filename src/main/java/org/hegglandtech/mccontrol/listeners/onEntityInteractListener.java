@@ -71,8 +71,13 @@ public class onEntityInteractListener implements Listener {
     @EventHandler
     public void onArrowShoot(ProjectileLaunchEvent event) {
         if (event.getEntity() instanceof Arrow arrow && arrow.getShooter() instanceof Player player) {
-            player.sendMessage("You are not allowed to shoot arrows!");
-            event.setCancelled(true);
+
+            PlayerTest playerTest = new PlayerTest(player);
+
+            if (!playerTest.validate()) {
+                player.sendMessage("You are not allowed to shoot arrows!");
+                event.setCancelled(true);
+            }
         }
     }
 
