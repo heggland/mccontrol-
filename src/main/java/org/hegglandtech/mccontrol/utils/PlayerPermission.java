@@ -21,7 +21,8 @@ public class PlayerPermission {
             return;
         }
 
-        Player playerData = new Player(player);
+        LoadPlayerFromMemory loadPlayerFromMemory = new LoadPlayerFromMemory();
+        Player playerData = loadPlayerFromMemory.getPlayer(player);
 
         if (action.equals("grant")) {
             playerData.setPermission(Player_Permission.valueOf(permission));

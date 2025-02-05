@@ -17,8 +17,6 @@ public class Player {
         this.name = player.getName();
         this.createdDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
         this.modifiedDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-        this.permissions.add(String.valueOf(Player_Permission.canBuild));
-        this.permissions.add(String.valueOf(Player_Permission.canPvp));
     }
 
     // Constructor for parsing a string representation of Player

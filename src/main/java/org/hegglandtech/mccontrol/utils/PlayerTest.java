@@ -16,21 +16,10 @@ public class PlayerTest extends Player {
 
     public boolean validate(Player_Permission permission) {
 
-        MemoryStorage memoryStorage = Mccontrol.getInstance().getMemoryStorage();
+        LoadPlayerFromMemory loadPlayerFromMemory = new LoadPlayerFromMemory();
+        Player playerData = loadPlayerFromMemory.getPlayer(player);
 
-        List<String> memory = memoryStorage.getMemory();
-
-        if (memory == null || memory.isEmpty()) return false;
-
-        String playerEntry = memory.stream()
-                .filter(line -> line.contains(player.getUniqueId().toString()))
-                .findFirst()
-                .orElse(null);
-
-        if (playerEntry == null) return false;
-
-        Player playerData = new Player(playerEntry);
-
+        if (playerData == null) return false;
         return playerData.checkPermission(permission);
     }
 }
