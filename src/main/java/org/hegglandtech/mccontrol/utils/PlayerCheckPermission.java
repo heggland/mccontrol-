@@ -11,10 +11,15 @@ public class PlayerCheckPermission extends Player {
 
     public boolean validate(Player_Permission permission) {
 
-        LoadPlayerFromMemory loadPlayerFromMemory = new LoadPlayerFromMemory();
-        Player playerData = loadPlayerFromMemory.getPlayer(player);
+        try {
+            LoadPlayerFromMemory loadPlayerFromMemory = new LoadPlayerFromMemory();
+            Player playerData = loadPlayerFromMemory.getPlayer(player);
 
-        if (playerData == null) return false;
-        return playerData.checkPermission(permission);
+            if (playerData == null) return false;
+            return playerData.checkPermission(permission);
+        } catch (Exception e) {
+            return false;
+        }
+
     }
 }

@@ -73,7 +73,11 @@ public class Player {
 
     // Check if the player has the specific permission
     public boolean checkPermission(Player_Permission permission) {
-        return this.permissions.contains(permission.toString());
+        try {
+            return this.permissions.contains(String.valueOf(permission));
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public void setPermission(Player_Permission permission) {
