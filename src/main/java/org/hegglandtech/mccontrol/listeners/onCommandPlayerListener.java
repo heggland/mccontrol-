@@ -7,7 +7,7 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.plugin.PluginManager;
 import org.hegglandtech.mccontrol.Mccontrol;
 import org.hegglandtech.mccontrol.utils.PermissionTabCompleter;
-import org.hegglandtech.mccontrol.utils.PlayerPermission;
+import org.hegglandtech.mccontrol.utils.PlayerUpdatePermission;
 import org.hegglandtech.mccontrol.storage.MemoryStorage;
 
 import java.util.Objects;
@@ -41,7 +41,7 @@ public class onCommandPlayerListener implements Listener {
                 String action = command.split(" ")[2];
                 String playerName = command.split(" ")[3];
 
-                PlayerPermission playerPermission = new PlayerPermission();
+                PlayerUpdatePermission playerPermission = new PlayerUpdatePermission();
                 playerPermission.update(permission, action, playerName);
 
             }

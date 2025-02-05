@@ -8,7 +8,7 @@ import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.PluginManager;
 import org.hegglandtech.mccontrol.Mccontrol;
-import org.hegglandtech.mccontrol.utils.PlayerTest;
+import org.hegglandtech.mccontrol.utils.PlayerCheckPermission;
 import org.hegglandtech.mccontrol.utils.Player_Permission;
 
 public class onInventoryOpenEventListener implements Listener {
@@ -25,7 +25,7 @@ public class onInventoryOpenEventListener implements Listener {
         for (InventoryType validType : InventoryType.values()) {
             if (type == validType) {
 
-                PlayerTest playerTest = new PlayerTest(player);
+                PlayerCheckPermission playerTest = new PlayerCheckPermission(player);
 
                 if (!playerTest.validate(Player_Permission.canBuild)) {
                     player.sendMessage("You are not allowed to open " + type + "!");

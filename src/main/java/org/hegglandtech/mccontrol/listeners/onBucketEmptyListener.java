@@ -7,7 +7,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.plugin.PluginManager;
 import org.hegglandtech.mccontrol.Mccontrol;
-import org.hegglandtech.mccontrol.utils.PlayerTest;
+import org.hegglandtech.mccontrol.utils.PlayerCheckPermission;
 import org.hegglandtech.mccontrol.utils.Player_Permission;
 
 import java.util.EnumSet;
@@ -28,7 +28,7 @@ public class onBucketEmptyListener implements Listener {
 
         Player player = event.getPlayer();
 
-        PlayerTest playerTest = new PlayerTest(player);
+        PlayerCheckPermission playerTest = new PlayerCheckPermission(player);
 
         boolean canPlace = playerTest.validate(Player_Permission.canBuild);
 

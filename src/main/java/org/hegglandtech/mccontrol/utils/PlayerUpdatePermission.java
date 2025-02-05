@@ -5,11 +5,11 @@ import org.hegglandtech.mccontrol.storage.MemoryStorage;
 
 import java.util.List;
 
-public class PlayerPermission {
+public class PlayerUpdatePermission {
 
     private static MemoryStorage memoryStorage = null;
 
-    public PlayerPermission() {
+    public PlayerUpdatePermission() {
         memoryStorage = Mccontrol.getInstance().getMemoryStorage();
     }
 
