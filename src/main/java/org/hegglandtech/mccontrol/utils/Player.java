@@ -1,29 +1,27 @@
 package org.hegglandtech.mccontrol.utils;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.*;
 
 public class Player {
 
     private String uuid;
     public String name;
+    private String createdDate;
     private String modifiedDate;
-    private boolean canInteractWithBlocks;
+    private List<String> permissions = new ArrayList<>();
 
+    // Constructor for creating Player from Bukkit player
     public Player(org.bukkit.entity.Player player) {
         this.uuid = player.getUniqueId().toString();
         this.name = player.getName();
+        this.createdDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
         this.modifiedDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-        this.canInteractWithBlocks = true;
+        this.permissions.add(String.valueOf(Player_Permission.canBuild));
+        this.permissions.add(String.valueOf(Player_Permission.canPvp));
     }
 
-    public Player(String uuid, String name, String startDate, boolean canInteractWithBlocks) {
-        this.uuid = uuid;
-        this.name = name;
-        this.modifiedDate = startDate;
-        this.canInteractWithBlocks = canInteractWithBlocks;
-    }
-
+    // Constructor for parsing a string representation of Player
     public Player(String playerEntry) {
         try {
             // Validate and strip the outer "Player{ }"
@@ -34,14 +32,15 @@ public class Player {
             // Remove "Player{" and "}" to get the content
             String content = playerEntry.substring(7, playerEntry.length() - 1);
 
-            // Split by commas to get each key-value pair
-            String[] fields = content.split(", ");
+            // Split by ", " while handling potential lists inside brackets
+            String[] fields = content.split(", (?=[a-zA-Z]+='[^']*')");
 
-            // Loop through fields and assign to the respective variables
             for (String field : fields) {
-                String[] keyValue = field.split("=");
-                String key = keyValue[0];
-                String value = keyValue[1].replace("'", ""); // Remove any single quotes
+                String[] keyValue = field.split("=", 2);
+                if (keyValue.length != 2) continue; // Skip invalid entries
+
+                String key = keyValue[0].trim();
+                String value = keyValue[1].trim().replaceAll("^'|'$", ""); // Remove surrounding quotes
 
                 switch (key) {
                     case "uuid":
@@ -50,11 +49,16 @@ public class Player {
                     case "name":
                         this.name = value;
                         break;
+                    case "createdDate":
+                        this.createdDate = value;
+                        break;
                     case "modifiedDate":
                         this.modifiedDate = value;
                         break;
-                    case "canInteractWithBlocks":
-                        this.canInteractWithBlocks = Boolean.parseBoolean(value);
+                    case "permissions":
+                        // Extract permissions list from the format "[perm1, perm2]"
+                        value = value.replaceAll("^\\[|]$", ""); // Remove square brackets
+                        this.permissions = value.isEmpty() ? new ArrayList<>() : new ArrayList<>(Arrays.asList(value.split(", ")));
                         break;
                     default:
                         throw new IllegalArgumentException("Unexpected field: " + key);
@@ -69,12 +73,21 @@ public class Player {
         return uuid;
     }
 
-    public void setCanInteractWithBlocks(boolean canInteractWithBlocks) {
-        this.canInteractWithBlocks = canInteractWithBlocks;
+    // Check if the player has the specific permission
+    public boolean checkPermission(Player_Permission permission) {
+        return this.permissions.contains(permission.toString());
     }
 
-    public boolean canInteractWithBlocks() {
-        return this.canInteractWithBlocks;
+    public void setPermission(Player_Permission permission) {
+            if (this.permissions.contains(String.valueOf(permission))) return;
+            this.permissions.add(String.valueOf(permission));
+            this.modifiedDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+    }
+
+    public void removePermission(Player_Permission permission) {
+        if (!this.permissions.contains(String.valueOf(permission))) return;
+        this.permissions.remove(String.valueOf(permission));
+        this.modifiedDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
     }
 
     @Override

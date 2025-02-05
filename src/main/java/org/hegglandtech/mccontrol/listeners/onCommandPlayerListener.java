@@ -6,8 +6,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.plugin.PluginManager;
 import org.hegglandtech.mccontrol.Mccontrol;
+import org.hegglandtech.mccontrol.utils.PermissionTabCompleter;
 import org.hegglandtech.mccontrol.utils.PlayerPermission;
 import org.hegglandtech.mccontrol.storage.MemoryStorage;
+
+import java.util.Objects;
 
 public class onCommandPlayerListener implements Listener {
 
@@ -23,21 +26,24 @@ public class onCommandPlayerListener implements Listener {
             String command = event.getMessage();
 
             if (!command.startsWith("/mccontrol:")) return;
-
             command = command.replace("/mccontrol:", "");
 
-            if (command.startsWith("caninteractwithblocks")) {
+            if (command.startsWith("permission")) {
 
-                if (command.split(" ").length != 3) {
-                    player.sendMessage("Usage: /mccontrol:caninteractwithblocks <playername> <true/false>");
+                if (command.split(" ").length != 4) {
+                    player.sendMessage("Usage: /mccontrol:permission <permission> grant|revoke playername");
                     return;
                 }
 
-                String playerName = command.split(" ")[1];
-                boolean canInteract = Boolean.parseBoolean(command.split(" ")[2]);
+                System.out.println(command);
+
+                String permission = command.split(" ")[1];
+                String action = command.split(" ")[2];
+                String playerName = command.split(" ")[3];
 
                 PlayerPermission playerPermission = new PlayerPermission();
-                playerPermission.update(playerName, canInteract);
+                playerPermission.update(permission, action, playerName);
+
             }
 
             if (command.equals("getmemory")) {
@@ -46,10 +52,14 @@ public class onCommandPlayerListener implements Listener {
             }
         }
 
+
     public boolean load() {
         try {
             PluginManager pluginManager = Mccontrol.getInstance().getPluginManager();
             pluginManager.registerEvents(this, Mccontrol.getInstance());
+
+            Objects.requireNonNull(Mccontrol.getInstance().getCommand("mccontrol:permission")).setTabCompleter(new PermissionTabCompleter());
+
             return true;
         } catch (Exception e) {
             return false;

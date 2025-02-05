@@ -1,6 +1,5 @@
 package org.hegglandtech.mccontrol.utils;
 
-import org.bukkit.plugin.PluginManager;
 import org.hegglandtech.mccontrol.Mccontrol;
 import org.hegglandtech.mccontrol.storage.MemoryStorage;
 
@@ -15,32 +14,23 @@ public class PlayerTest extends Player {
         this.player = player;
     }
 
-    public boolean validate() {
-        return validate(false);
-    }
-
-    public boolean validate(Boolean debug) {
+    public boolean validate(Player_Permission permission) {
 
         MemoryStorage memoryStorage = Mccontrol.getInstance().getMemoryStorage();
 
         List<String> memory = memoryStorage.getMemory();
 
-        if (memory == null || memory.isEmpty()) {
-            return false;
-        }
+        if (memory == null || memory.isEmpty()) return false;
 
         String playerEntry = memory.stream()
                 .filter(line -> line.contains(player.getUniqueId().toString()))
                 .findFirst()
                 .orElse(null);
 
-        if (playerEntry != null) {
-            Player playerData = new Player(playerEntry);
-            if (playerData.canInteractWithBlocks()) return true;
-        }
+        if (playerEntry == null) return false;
 
-        new PlayerLogger(player).print("player is not validated and event was cancelled");
+        Player playerData = new Player(playerEntry);
 
-        return false;
+        return playerData.checkPermission(permission);
     }
 }

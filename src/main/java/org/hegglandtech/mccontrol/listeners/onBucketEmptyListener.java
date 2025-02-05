@@ -8,6 +8,7 @@ import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.plugin.PluginManager;
 import org.hegglandtech.mccontrol.Mccontrol;
 import org.hegglandtech.mccontrol.utils.PlayerTest;
+import org.hegglandtech.mccontrol.utils.Player_Permission;
 
 import java.util.EnumSet;
 
@@ -29,7 +30,7 @@ public class onBucketEmptyListener implements Listener {
 
         PlayerTest playerTest = new PlayerTest(player);
 
-        boolean canPlace = playerTest.validate();
+        boolean canPlace = playerTest.validate(Player_Permission.canBuild);
 
         if (!canPlace) {
             player.sendMessage("You are not allowed to this bucket fluid.");

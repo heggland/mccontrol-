@@ -12,7 +12,9 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.plugin.PluginManager;
 import org.hegglandtech.mccontrol.Mccontrol;
+import org.hegglandtech.mccontrol.utils.PlayerPermission;
 import org.hegglandtech.mccontrol.utils.PlayerTest;
+import org.hegglandtech.mccontrol.utils.Player_Permission;
 
 import java.util.EnumSet;
 
@@ -45,23 +47,12 @@ public class onEntityInteractListener implements Listener {
     );
 
     @EventHandler
-    public void onAnimalEntityDeath(EntityDeathEvent event) {
-        if (ANIMAL_TYPES.contains(event.getEntity().getType())) {
-            Player killer = event.getEntity().getKiller();
-            if (killer != null) {
-                killer.sendMessage("You killed an innocent animal!");
-            }
-        }
-    }
-
-    @EventHandler
     public void onEntityAttackAnimal(EntityDamageByEntityEvent event) {
-        if (ANIMAL_TYPES.contains(event.getEntity().getType()) && event.getDamager() instanceof Player) {
-            Player player = (Player) event.getDamager();
+        if (ANIMAL_TYPES.contains(event.getEntity().getType()) && event.getDamager() instanceof Player player) {
 
             PlayerTest playerTest = new PlayerTest(player);
 
-            if (!playerTest.validate()) {
+            if (!playerTest.validate(Player_Permission.canPvp)) {
                 player.sendMessage("You are not allowed to attack innocent animals!");
                 event.setCancelled(true);
             }
@@ -74,7 +65,7 @@ public class onEntityInteractListener implements Listener {
 
             PlayerTest playerTest = new PlayerTest(player);
 
-            if (!playerTest.validate()) {
+            if (!playerTest.validate(Player_Permission.canPvp)) {
                 player.sendMessage("You are not allowed to shoot arrows!");
                 event.setCancelled(true);
             }

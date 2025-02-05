@@ -9,6 +9,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.PluginManager;
 import org.hegglandtech.mccontrol.Mccontrol;
 import org.hegglandtech.mccontrol.utils.PlayerTest;
+import org.hegglandtech.mccontrol.utils.Player_Permission;
 
 public class onInventoryOpenEventListener implements Listener {
 
@@ -26,7 +27,7 @@ public class onInventoryOpenEventListener implements Listener {
 
                 PlayerTest playerTest = new PlayerTest(player);
 
-                if (!playerTest.validate()) {
+                if (!playerTest.validate(Player_Permission.canBuild)) {
                     player.sendMessage("You are not allowed to open " + type + "!");
                     event.setCancelled(true);
                     break;

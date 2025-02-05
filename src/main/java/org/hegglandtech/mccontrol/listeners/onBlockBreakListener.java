@@ -7,6 +7,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.plugin.PluginManager;
 import org.hegglandtech.mccontrol.Mccontrol;
 import org.hegglandtech.mccontrol.utils.PlayerTest;
+import org.hegglandtech.mccontrol.utils.Player_Permission;
 
 
 public class onBlockBreakListener implements Listener {
@@ -17,7 +18,7 @@ public class onBlockBreakListener implements Listener {
 
         PlayerTest playerTest = new PlayerTest(player);
 
-        if (!playerTest.validate()) {
+        if (!playerTest.validate(Player_Permission.canBuild)) {
             player.sendMessage("You are not allowed to break blocks");
             event.setCancelled(true);
         }
