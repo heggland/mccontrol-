@@ -30,7 +30,7 @@ public class onBucketEmptyListener implements Listener {
 
         PlayerCheckPermission playerTest = new PlayerCheckPermission(player);
 
-        boolean canPlace = playerTest.validate(Player_Permission.canBuild);
+        boolean canPlace = playerTest.validate(Player_Permission.canUseBucket);
 
         if (!canPlace) {
             player.sendMessage("You are not allowed to this bucket fluid.");

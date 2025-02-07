@@ -6,7 +6,8 @@ import java.util.stream.Collectors;
 
 public enum Player_Permission {
     canBuild,
-    canPvp
+    canPvp,
+    canUseBucket;
 
     // Public static list containing all enum values as strings
     public static final List<String> Permission_list = Arrays.stream(Player_Permission.values())
