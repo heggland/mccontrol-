@@ -10,6 +10,7 @@ A simple way to manage player permissions for your server without all the bloat.
 - **can use bucket**: Prevents players from using buckets 🪣
 - **can pvp**: Prevents player from attacking other players 🤺
 - **can pva**: Prevents player from attacking innocent animals 🐶
+- **can use arrows**: Prevents player from using arrows 🏹
 - more to come... 🚧 
 ---
 
