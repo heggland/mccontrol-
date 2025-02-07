@@ -82,7 +82,8 @@ public class onCommandPlayerListener implements Listener {
 
     private void handleGetMemoryCommand(Player player) {
         MemoryStorage memoryStorage = Mccontrol.getInstance().getMemoryStorage();
-        player.sendMessage(memoryStorage.getMemory(true));
+        ServerLogger.print(memoryStorage.getMemory(true));
+        player.sendMessage("See the console for memory");
     }
 
     public boolean load() {
