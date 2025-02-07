@@ -52,6 +52,10 @@ public class onCommandPlayerListener implements Listener {
     private void giveOnlinePlayerPermission(String command) {
         String[] args = command.split(" ");
 
+        if (args.length != 3) {
+            return;
+        }
+
         String permission = args[0];
         String action = args[1];
         String playerName = args[2];
@@ -62,6 +66,10 @@ public class onCommandPlayerListener implements Listener {
 
     private void modifyOfflinePlayerPermission(String command) {
         String[] args = command.split(" ");
+
+        if (args.length != 3) {
+            return;
+        }
 
         String permission = args[0];
         String action = args[1];
