@@ -38,21 +38,31 @@ public class onEntityInteractListener implements Listener {
             EntityType.GOAT,
             EntityType.CAMEL,
             EntityType.FROG,
-            EntityType.SNIFFER,
-            EntityType.PLAYER
+            EntityType.SNIFFER
     );
 
     @EventHandler
-    public void onEntityAttackAnimal(EntityDamageByEntityEvent event) {
+    public void onEntityAttackEvent(EntityDamageByEntityEvent event) {
         if (ANIMAL_TYPES.contains(event.getEntity().getType()) && event.getDamager() instanceof Player player) {
 
             PlayerCheckPermission playerTest = new PlayerCheckPermission(player);
 
-            if (!playerTest.validate(Player_Permission.canPvp)) {
+            if (!playerTest.validate(Player_Permission.canPva)) {
                 player.sendMessage("You are not allowed to attack innocent animals!");
+                event.setCancelled(true);
+                return;
+            }
+        }
+
+        if (event.getEntity().getType() == EntityType.PLAYER && event.getDamager() instanceof Player player) {
+            PlayerCheckPermission playerTest = new PlayerCheckPermission(player);
+
+            if (!playerTest.validate(Player_Permission.canPvp)) {
+                player.sendMessage("You are not allowed to attack other players!");
                 event.setCancelled(true);
             }
         }
+
     }
 
     @EventHandler
@@ -61,7 +71,7 @@ public class onEntityInteractListener implements Listener {
 
             PlayerCheckPermission playerTest = new PlayerCheckPermission(player);
 
-            if (!playerTest.validate(Player_Permission.canPvp)) {
+            if (!playerTest.validate(Player_Permission.canUseArrows)) {
                 player.sendMessage("You are not allowed to shoot arrows!");
                 event.setCancelled(true);
             }

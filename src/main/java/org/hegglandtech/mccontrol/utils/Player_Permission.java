@@ -5,8 +5,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public enum Player_Permission {
-    canBuild,
     canPvp,
+    canPva,
+    canUseArrows,
+    canBuild,
     canUseBucket;
 
     // Public static list containing all enum values as strings
