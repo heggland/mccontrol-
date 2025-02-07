@@ -17,6 +17,7 @@ A simple way to manage player permissions for your server without all the bloat.
 ### ⚙️ **Commands:**
 - /mccontrol <permission> grant|revoke <player> <permission>
 - /mccontrol getmemory
+- /mcontrol modify <permission> grant|revoke playerUuid
 
 
 ### 🚀 Roadmap:
