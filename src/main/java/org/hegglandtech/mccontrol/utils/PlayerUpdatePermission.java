@@ -10,7 +10,6 @@ public class PlayerUpdatePermission {
     private static MemoryStorage memoryStorage = null;
     private static LoadPlayerFromMemory loadPlayerFromMemory;
     private static org.bukkit.entity.Player player;
-    private static Player oldPlayerData;
 
     public PlayerUpdatePermission(org.bukkit.entity.Player playerSender) {
         memoryStorage = Mccontrol.getInstance().getMemoryStorage();
@@ -32,19 +31,12 @@ public class PlayerUpdatePermission {
             playerData = new Player(player);
         }
 
-        oldPlayerData = playerData;
-
         if (action.equals("grant")) {
             playerData.setPermission(Player_Permission.valueOf(permission));
             player.sendMessage(player.getName() + " has been granted the permission " + permission);
         } else if (action.equals("revoke")) {
             playerData.removePermission(Player_Permission.valueOf(permission));
             player.sendMessage(player.getName() + " has been revoked the permission " + permission);
-        }
-
-        if (oldPlayerData == playerData) {
-            ServerLogger.print("Nothing has been changed. This action is already on the player. Command issued by " + player.getName());
-            return;
         }
 
         save(playerData);
@@ -60,17 +52,10 @@ public class PlayerUpdatePermission {
             return;
         }
 
-        oldPlayerData = playerData;
-
         if (action.equals("grant")) {
             playerData.setPermission(Player_Permission.valueOf(permission));
         } else if (action.equals("revoke")) {
             playerData.removePermission(Player_Permission.valueOf(permission));
-        }
-
-        if (oldPlayerData == playerData) {
-            ServerLogger.print("Nothing has been changed. This action is already on the player. Command issued by " + player.getName());
-            return;
         }
 
         save(playerData);
