@@ -21,4 +21,16 @@ public class LoadPlayerFromMemory {
 
         return new Player(playerEntry);
     }
+
+    public Player getPlayerByPlayerUuid(String uuid) {
+        if (memory == null || memory.isEmpty()) return null;
+
+        String playerEntry = memory.stream()
+                .filter(line -> line.contains(uuid))
+                .findFirst()
+                .orElse(null);
+        if (playerEntry == null) return null;
+
+        return new Player(playerEntry);
+    }
 }

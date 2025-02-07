@@ -9,49 +9,67 @@ import org.hegglandtech.mccontrol.Mccontrol;
 import org.hegglandtech.mccontrol.utils.PermissionTabCompleter;
 import org.hegglandtech.mccontrol.utils.PlayerUpdatePermission;
 import org.hegglandtech.mccontrol.storage.MemoryStorage;
+import org.hegglandtech.mccontrol.utils.ServerLogger;
 
 import java.util.Objects;
 
 public class onCommandPlayerListener implements Listener {
 
+    org.bukkit.entity.Player player;
+
     @EventHandler
     public void onCommand(PlayerCommandPreprocessEvent event) {
-        Player player = event.getPlayer();
+        player = event.getPlayer();
 
-        if (!isPlayerAllowed(player, event)) return;
+        if (!player.isOp()) {
+            player.sendMessage("You are not allowed to use commands");
+            event.setCancelled(true);
+            return;
+        }
+
         if (!event.getMessage().startsWith("/mccontrol:")) return;
 
         String command = event.getMessage().replace("/mccontrol:", "");
 
+        ServerLogger.print(command);
+
         if (command.startsWith("permission")) {
-            handlePermissionCommand(player, command);
-        } else if (command.equals("getmemory")) {
+            command = command.replace("permission ", "");
+            giveOnlinePlayerPermission(command);
+        }
+
+        if (command.startsWith("modify")) {
+            command = command.replace("modify ", "");
+            modifyOfflinePlayerPermission(command);
+        }
+
+        if (command.equals("getmemory")) {
             handleGetMemoryCommand(player);
         }
+
     }
 
-    private boolean isPlayerAllowed(Player player, PlayerCommandPreprocessEvent event) {
-        if (!player.isOp()) {
-            player.sendMessage("You are not allowed to use commands");
-            event.setCancelled(true);
-            return false;
-        }
-        return true;
-    }
-
-    private void handlePermissionCommand(Player player, String command) {
+    private void giveOnlinePlayerPermission(String command) {
         String[] args = command.split(" ");
-        if (args.length != 4) {
-            player.sendMessage("Usage: /mccontrol:permission <permission> grant|revoke playername");
-            return;
-        }
 
-        String permission = args[1];
-        String action = args[2];
-        String playerName = args[3];
+        String permission = args[0];
+        String action = args[1];
+        String playerName = args[2];
 
-        PlayerUpdatePermission playerPermission = new PlayerUpdatePermission();
+        PlayerUpdatePermission playerPermission = new PlayerUpdatePermission(player);
         playerPermission.update(permission, action, playerName);
+    }
+
+    private void modifyOfflinePlayerPermission(String command) {
+        String[] args = command.split(" ");
+
+        String permission = args[0];
+        String action = args[1];
+        String uuid = args[2];
+
+        PlayerUpdatePermission playerPermission = new PlayerUpdatePermission(player);
+        playerPermission.updatePlayerUsingUuid(permission, action, uuid);
+
     }
 
     private void handleGetMemoryCommand(Player player) {
