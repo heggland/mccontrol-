@@ -8,7 +8,8 @@ import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.PluginManager;
 import org.hegglandtech.mccontrol.Mccontrol;
-import org.hegglandtech.mccontrol.utils.BlockPlaceBreak;
+import org.hegglandtech.mccontrol.utils.PlayerCheckPermission;
+import org.hegglandtech.mccontrol.utils.Player_Permission;
 
 public class onInventoryOpenEventListener implements Listener {
 
@@ -24,10 +25,9 @@ public class onInventoryOpenEventListener implements Listener {
         for (InventoryType validType : InventoryType.values()) {
             if (type == validType) {
 
-                BlockPlaceBreak blockPlaceBreak = new BlockPlaceBreak();
-                blockPlaceBreak.validate(player);
+                PlayerCheckPermission playerTest = new PlayerCheckPermission(player);
 
-                if (!blockPlaceBreak.validate(player)) {
+                if (!playerTest.validate(Player_Permission.canBuild)) {
                     player.sendMessage("You are not allowed to open " + type + "!");
                     event.setCancelled(true);
                     break;

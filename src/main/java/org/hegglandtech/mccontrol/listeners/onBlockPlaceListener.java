@@ -6,15 +6,16 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.plugin.PluginManager;
 import org.hegglandtech.mccontrol.Mccontrol;
-import org.hegglandtech.mccontrol.utils.BlockPlaceBreak;
+import org.hegglandtech.mccontrol.utils.PlayerCheckPermission;
+import org.hegglandtech.mccontrol.utils.Player_Permission;
 
 public class onBlockPlaceListener implements Listener {
 
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event) {
-        BlockPlaceBreak blockPlaceBreak = new BlockPlaceBreak();
         Player player = event.getPlayer();
-        boolean test = blockPlaceBreak.validate(player);
+        PlayerCheckPermission playerTest = new PlayerCheckPermission(player);
+        boolean test = playerTest.validate(Player_Permission.canBuild);
 
         if (!test) {
             player.sendMessage("You are not allowed to place blocks");
