@@ -15,7 +15,7 @@ public class PermissionTabCompleter implements TabCompleter {
         List<String> suggestions = new ArrayList<>();
 
         if (args.length == 1) {
-            StringUtil.copyPartialMatches(args[0], List.of("canBuild", "canPvp"), suggestions);
+            StringUtil.copyPartialMatches(args[0], Player_Permission.Permission_list, suggestions);
         } else if (args.length == 2) {
             StringUtil.copyPartialMatches(args[1], List.of("grant", "revoke"), suggestions);
         } else if (args.length == 3) {
