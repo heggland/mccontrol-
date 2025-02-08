@@ -3,8 +3,6 @@
 This plugin handles permission for a Minecraft server.
 A simple way to manage player permissions for your server without all the bloat.
 
-This is a project I made to get better with Java and get a simple plugin for my own papermc server 🤓 
-
 ### Features:
 
 #### 🛡️ **Grief Prevention:** 🛡️
