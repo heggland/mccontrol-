@@ -32,9 +32,9 @@ A simple way to manage player permissions for your server without all the bloat.
 
 ---
 
-## Like this? Consider supporting me with a cup of coffee 🤓
+## How to contribute
 - you can contact me over at heggland.tech using the contact form.
 
-
+Like my work?
 <a href="https://www.buymeacoffee.com/heggland" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Cup Of 		Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px 		rgba(190, 190, 190, 0.5) !important;" ></a>
 
