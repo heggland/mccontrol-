@@ -33,7 +33,7 @@ A simple way to manage player permissions for your server without all the bloat.
 ---
 
 ## How to contribute
-- you can contact me over at heggland.tech using the contact form.
+- you can contact me at mc@heggland.tech
 
 <div>
   Like my work?
