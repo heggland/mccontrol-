@@ -41,7 +41,7 @@ public class PlayerUpdatePermission {
 
         save(playerData);
 
-        ServerLogger.print(playerData.name + " has been " + action + "ed the permission " + permission + ". Command issued by " + player.getName());
+        ServerLogger.print(playerData.name + " has been " + action + "ed the permission " + permission + ". Command issued by " + this.player.getName());
 
     }
 
@@ -59,8 +59,6 @@ public class PlayerUpdatePermission {
         }
 
         save(playerData);
-
-        ServerLogger.print(playerData.name + " has been " + action + "ed the permission " + permission + ". Was authored by " + player.getName());
     }
 
     private static void save(Player playerData) {
