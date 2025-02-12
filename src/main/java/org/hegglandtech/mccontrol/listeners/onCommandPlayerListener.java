@@ -21,12 +21,7 @@ public class onCommandPlayerListener implements Listener {
         String command = event.getMessage().replace("/mccontrol:", "");
 
         if (command.startsWith("permission")) {
-            permissionCommands.addPermission();
-            return;
-        }
-
-        if (command.startsWith("modify")) {
-            permissionCommands.modifyPermission();
+            permissionCommands.updatePermission();
             return;
         }
 

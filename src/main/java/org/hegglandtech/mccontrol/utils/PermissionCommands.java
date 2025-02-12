@@ -31,32 +31,19 @@ public class PermissionCommands {
 
     }
 
-    public void addPermission() {
+    public void updatePermission() {
 
         if (!isAdmin()) return;
         if (!argsValid()) return;
 
         if (command.startsWith("permission")) {
-            giveOnlinePlayerPermission();
+            updatePlayerPermission();
         }
     }
 
-    public void modifyPermission() {
-        if (!isAdmin()) return;
-        if (!argsValid()) return;
-
-        modifyOfflinePlayerPermission();
-    }
-
-
-    private void giveOnlinePlayerPermission() {
+    private void updatePlayerPermission() {
         PlayerUpdatePermission playerPermission = new PlayerUpdatePermission(player);
         playerPermission.update(permission, action, playerIdentifier);
-    }
-
-    private void modifyOfflinePlayerPermission() {
-        PlayerUpdatePermission playerPermission = new PlayerUpdatePermission(player);
-        playerPermission.updatePlayerUsingUuid(permission, action, playerIdentifier);
     }
 
     public void printMemory() {

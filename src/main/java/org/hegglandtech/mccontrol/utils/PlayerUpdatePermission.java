@@ -22,6 +22,7 @@ public class PlayerUpdatePermission {
 
         if (player == null) {
             Mccontrol.getInstance().getLogger().warning("Player " + playerName + " not found.");
+            updatePlayerUsingUuid(permission, action, playerName);
             return;
         }
 
