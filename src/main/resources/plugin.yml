@@ -11,12 +11,9 @@ permissions:
 commands:
   permission:
     description: Grants the block placement permission to a player.
-    usage: permission <canBuild|canPvp> grant|revoke playername
+    usage: permission <canBuild|canPvp> grant|revoke playername|playerUuid
     permission: mccontrol.admin
-  modify:
-    description: Modify a player permission
-    usage: modify <permission> grant|revoke playeruuid
-    permission: mccontrol.admin
+
   getmemory:
     description: Get the memory
     usage: getmemory

@@ -21,7 +21,9 @@ public class PlayerUpdatePermission {
         org.bukkit.entity.Player player = Mccontrol.getInstance().getServer().getPlayer(playerName);
 
         if (player == null) {
-            Mccontrol.getInstance().getLogger().warning("Player " + playerName + " not found.");
+            ServerLogger.print("Online player " + playerName + " not found.");
+            ServerLogger.print("If UUID is used, trying to find player by UUID.");
+            updatePlayerUsingUuid(permission, action, playerName);
             return;
         }
 
@@ -41,7 +43,7 @@ public class PlayerUpdatePermission {
 
         save(playerData);
 
-        ServerLogger.print(playerData.name + " has been " + action + "ed the permission " + permission + ". Command issued by " + player.getName());
+        ServerLogger.print(playerData.name + " has been " + action + "ed the permission " + permission + ". Command issued by " + this.player.getName());
 
     }
 
@@ -49,6 +51,7 @@ public class PlayerUpdatePermission {
         Player playerData = loadPlayerFromMemory.getPlayerByPlayerUuid(uuid);
 
         if (playerData == null) {
+            ServerLogger.print("Player with UUID " + uuid + " not found.");
             return;
         }
 
@@ -60,7 +63,7 @@ public class PlayerUpdatePermission {
 
         save(playerData);
 
-        ServerLogger.print(playerData.name + " has been " + action + "ed the permission " + permission + ". Was authored by " + player.getName());
+        ServerLogger.print(playerData.name + " has been " + action + "ed the permission " + permission + ". Command issued by " + this.player.getName());
     }
 
     private static void save(Player playerData) {
