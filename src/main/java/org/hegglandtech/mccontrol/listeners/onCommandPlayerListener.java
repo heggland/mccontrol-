@@ -1,89 +1,40 @@
 package org.hegglandtech.mccontrol.listeners;
 
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.plugin.PluginManager;
 import org.hegglandtech.mccontrol.Mccontrol;
-import org.hegglandtech.mccontrol.utils.PermissionTabCompleter;
-import org.hegglandtech.mccontrol.utils.PlayerUpdatePermission;
-import org.hegglandtech.mccontrol.storage.MemoryStorage;
-import org.hegglandtech.mccontrol.utils.ServerLogger;
+import org.hegglandtech.mccontrol.utils.*;
 
 import java.util.Objects;
 
 public class onCommandPlayerListener implements Listener {
 
-    org.bukkit.entity.Player player;
-
     @EventHandler
     public void onCommand(PlayerCommandPreprocessEvent event) {
-        player = event.getPlayer();
-
-        if (!player.isOp()) {
-            player.sendMessage("You are not allowed to use commands");
-            event.setCancelled(true);
-            return;
-        }
 
         if (!event.getMessage().startsWith("/mccontrol:")) return;
 
+        PermissionCommands permissionCommands = new PermissionCommands(event);
+
         String command = event.getMessage().replace("/mccontrol:", "");
 
-        ServerLogger.print(command);
-
         if (command.startsWith("permission")) {
-            command = command.replace("permission ", "");
-            giveOnlinePlayerPermission(command);
+            permissionCommands.addPermission();
+            return;
         }
 
         if (command.startsWith("modify")) {
-            command = command.replace("modify ", "");
-            modifyOfflinePlayerPermission(command);
+            permissionCommands.modifyPermission();
+            return;
         }
 
         if (command.equals("getmemory")) {
-            handleGetMemoryCommand(player);
-        }
-
-    }
-
-    private void giveOnlinePlayerPermission(String command) {
-        String[] args = command.split(" ");
-
-        if (args.length != 3) {
+            permissionCommands.printMemory();
             return;
         }
 
-        String permission = args[0];
-        String action = args[1];
-        String playerName = args[2];
-
-        PlayerUpdatePermission playerPermission = new PlayerUpdatePermission(player);
-        playerPermission.update(permission, action, playerName);
-    }
-
-    private void modifyOfflinePlayerPermission(String command) {
-        String[] args = command.split(" ");
-
-        if (args.length != 3) {
-            return;
-        }
-
-        String permission = args[0];
-        String action = args[1];
-        String uuid = args[2];
-
-        PlayerUpdatePermission playerPermission = new PlayerUpdatePermission(player);
-        playerPermission.updatePlayerUsingUuid(permission, action, uuid);
-
-    }
-
-    private void handleGetMemoryCommand(Player player) {
-        MemoryStorage memoryStorage = Mccontrol.getInstance().getMemoryStorage();
-        ServerLogger.print(memoryStorage.getMemory(true));
-        player.sendMessage("See the console for memory");
     }
 
     public boolean load() {
