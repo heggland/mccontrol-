@@ -63,6 +63,40 @@ public class PermissionCommands {
         return true;
     }
 
+
+    public void generateToken() {
+        if (!isAdmin()) return;
+        if (!argsValid()) return;
+
+        if (this.command.replace("generatetoken", "").isEmpty()) {
+            player.sendMessage("No permissions specified");
+            ServerLogger.print("No permissions specified");
+            return;
+        }
+
+        if (command.startsWith("generatetoken")) {
+            PlayerUpdatePermission playerPermission = new PlayerUpdatePermission(this.player);
+            Token token = new Token();
+            String tokenString = token.generate(16);
+
+            String permissions = this.command.replace("generatetoken ", "");
+
+            playerPermission.createEmptyPlayer(tokenString, permissions);
+        }
+    }
+
+    public void validateToken() {
+
+        if (command.replace("token", "").isEmpty()) {
+            player.sendMessage("No token specified");
+            ServerLogger.print("No token specified");
+            return;
+        }
+
+        PlayerUpdatePermission playerPermission = new PlayerUpdatePermission(this.player);
+        playerPermission.updatePlayerUsingToken(this.args[1]);
+    }
+
     private boolean argsValid() {
         return args != null && args.length != 0;
     }

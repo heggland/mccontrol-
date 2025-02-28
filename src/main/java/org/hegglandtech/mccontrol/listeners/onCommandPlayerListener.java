@@ -30,6 +30,16 @@ public class onCommandPlayerListener implements Listener {
             return;
         }
 
+        if (command.startsWith("token")) {
+            permissionCommands.validateToken();
+            return;
+        }
+
+        if (command.startsWith("generatetoken")) {
+            permissionCommands.generateToken();
+            return;
+        }
+
     }
 
     public boolean load() {

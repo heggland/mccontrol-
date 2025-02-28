@@ -10,6 +10,13 @@ public class Player {
     private String createdDate;
     private String modifiedDate;
     private List<String> permissions = new ArrayList<>();
+    private String token;
+
+    // Constructor for creating empty player from token and permissions
+    public Player(String Token, String permissions) {
+        this.token = Token;
+        this.permissions = Arrays.asList(permissions.split(" "));
+    }
 
     // Constructor for creating Player from Bukkit player
     public Player(org.bukkit.entity.Player player) {
@@ -58,6 +65,9 @@ public class Player {
                         value = value.replaceAll("^\\[|]$", ""); // Remove square brackets
                         this.permissions = value.isEmpty() ? new ArrayList<>() : new ArrayList<>(Arrays.asList(value.split(", ")));
                         break;
+                    case "token":
+                        this.token = value;
+                        break;
                     default:
                         throw new IllegalArgumentException("Unexpected field: " + key);
                 }
@@ -90,6 +100,22 @@ public class Player {
         if (!this.permissions.contains(String.valueOf(permission))) return;
         this.permissions.remove(String.valueOf(permission));
         this.modifiedDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     @Override

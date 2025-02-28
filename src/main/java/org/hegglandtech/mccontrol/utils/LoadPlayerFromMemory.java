@@ -4,6 +4,7 @@ import org.hegglandtech.mccontrol.Mccontrol;
 import org.hegglandtech.mccontrol.storage.MemoryStorage;
 
 import java.util.List;
+import java.util.Objects;
 
 public class LoadPlayerFromMemory {
 
@@ -32,5 +33,22 @@ public class LoadPlayerFromMemory {
         if (playerEntry == null) return null;
 
         return new Player(playerEntry);
+    }
+
+    public Player getPlayerByToken(String token) {
+        if (memory == null || memory.isEmpty()) return null;
+
+        String playerEntry = memory.stream()
+                .filter(line -> line.contains(token))
+                .findFirst()
+                .orElse(null);
+
+        if (playerEntry == null) return null;
+
+        Player player = new Player(playerEntry);
+
+        if (Objects.equals(player.getToken(), "")) return null;
+
+        return player;
     }
 }

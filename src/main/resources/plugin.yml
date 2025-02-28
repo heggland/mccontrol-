@@ -18,3 +18,13 @@ commands:
     description: Get the memory
     usage: getmemory
     permission: mccontrol.admin
+
+  generatetoken:
+    description: Generate a token
+    usage: generatetoken <permissions[]>
+    permission: mccontrol.admin
+
+  token:
+    description: Validate a token
+    usage: token <token>
+    permission: mccontrol.admin
