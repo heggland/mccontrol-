@@ -21,20 +21,18 @@ public class PermissionCommands {
         this.event = event;
         this.player = event.getPlayer();
         this.command = event.getMessage().replace("/mccontrol:", "");
-
-        if (command.split(" ").length != 4) return;
-
         this.args = command.split(" ");
-        this.permission = args[1];
-        this.action = args[2];
-        this.playerIdentifier = args[3]; // player name or player UUID
-
     }
 
     public void updatePermission() {
 
         if (!isAdmin()) return;
         if (!argsValid()) return;
+
+        if (command.split(" ").length != 4) return;
+        this.permission = args[1];
+        this.action = args[2];
+        this.playerIdentifier = args[3]; // player name or player UUID
 
         if (command.startsWith("permission")) {
             updatePlayerPermission();
