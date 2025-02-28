@@ -3,6 +3,7 @@ package org.hegglandtech.mccontrol.utils;
 import org.hegglandtech.mccontrol.Mccontrol;
 import org.hegglandtech.mccontrol.storage.MemoryStorage;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class PlayerUpdatePermission {
@@ -17,7 +18,7 @@ public class PlayerUpdatePermission {
         player = playerSender;
     }
 
-    public void update(String permission, String action, String playerName) {
+    public void update(String playerName, String action, String permission) {
         org.bukkit.entity.Player player = Mccontrol.getInstance().getServer().getPlayer(playerName);
 
         if (player == null) {
@@ -34,10 +35,12 @@ public class PlayerUpdatePermission {
         }
 
         if (action.equals("grant")) {
-            playerData.setPermission(Player_Permission.valueOf(permission));
+            List<String> permissions = Arrays.asList(permission.split(" "));
+            playerData.setPermission(permissions);
             player.sendMessage(player.getName() + " has been granted the permission " + permission);
         } else if (action.equals("revoke")) {
-            playerData.removePermission(Player_Permission.valueOf(permission));
+            List<String> permissions = Arrays.asList(permission.split(" "));
+            playerData.removePermission(permissions);
             player.sendMessage(player.getName() + " has been revoked the permission " + permission);
         }
 
@@ -56,9 +59,9 @@ public class PlayerUpdatePermission {
         }
 
         if (action.equals("grant")) {
-            playerData.setPermission(Player_Permission.valueOf(permission));
+            playerData.setPermission(Arrays.asList(permission.split(" ")));
         } else if (action.equals("revoke")) {
-            playerData.removePermission(Player_Permission.valueOf(permission));
+            playerData.removePermission(Arrays.asList(permission.split(" ")));
         }
 
         save(playerData);
@@ -111,6 +114,9 @@ public class PlayerUpdatePermission {
             }
         }
 
+        ServerLogger.print("---");
+        ServerLogger.print(playerData.toString());
+        ServerLogger.print("---");
         memoryStorage.updateMemory(playerData.toString());
         memoryStorage.writeToFile(memoryStorage.getMemory(true));
     }
