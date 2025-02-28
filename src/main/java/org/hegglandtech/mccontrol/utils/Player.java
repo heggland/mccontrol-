@@ -90,15 +90,27 @@ public class Player {
         }
     }
 
-    public void setPermission(Player_Permission permission) {
-            if (this.permissions.contains(String.valueOf(permission))) return;
-            this.permissions.add(String.valueOf(permission));
-            this.modifiedDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+    public void setPermission(List<String> permission) {
+
+        for (String perm : permission) {
+            if (!Player_Permission.Permission_list.contains(String.valueOf(perm))) {
+                continue;
+            }
+            this.permissions.add(String.valueOf(perm));
+        }
+
+        this.modifiedDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
     }
 
-    public void removePermission(Player_Permission permission) {
-        if (!this.permissions.contains(String.valueOf(permission))) return;
-        this.permissions.remove(String.valueOf(permission));
+    public void removePermission(List<String> permission) {
+
+        for (String perm : permission) {
+            if (!Player_Permission.Permission_list.contains(String.valueOf(perm))) {
+                continue;
+            }
+            this.permissions.remove(String.valueOf(perm));
+        }
+
         this.modifiedDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
     }
 

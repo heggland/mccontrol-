@@ -4,6 +4,8 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.hegglandtech.mccontrol.Mccontrol;
 import org.hegglandtech.mccontrol.storage.MemoryStorage;
 
+import java.util.Arrays;
+
 public class PermissionCommands {
 
     org.bukkit.entity.Player player;
@@ -26,22 +28,23 @@ public class PermissionCommands {
 
     public void updatePermission() {
 
+        if (!command.startsWith("permission")) return;
+
         if (!isAdmin()) return;
         if (!argsValid()) return;
 
-        if (command.split(" ").length != 4) return;
-        this.permission = args[1];
-        this.action = args[2];
-        this.playerIdentifier = args[3]; // player name or player UUID
+        if (command.split(" ").length < 4) return;
 
-        if (command.startsWith("permission")) {
-            updatePlayerPermission();
-        }
+        this.playerIdentifier = args[1]; // player name or player UUID
+        this.action = args[2];
+        this.permission = String.join(" ", Arrays.copyOfRange(args, 3, args.length));
+
+        updatePlayerPermission();
     }
 
     private void updatePlayerPermission() {
         PlayerUpdatePermission playerPermission = new PlayerUpdatePermission(player);
-        playerPermission.update(permission, action, playerIdentifier);
+        playerPermission.update(playerIdentifier, action, permission);
     }
 
     public void printMemory() {

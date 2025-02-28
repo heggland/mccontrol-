@@ -14,16 +14,26 @@ public class PermissionTabCompleter implements TabCompleter {
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
         List<String> suggestions = new ArrayList<>();
 
-        if (args.length == 1) {
-            StringUtil.copyPartialMatches(args[0], Player_Permission.Permission_list, suggestions);
-        } else if (args.length == 2) {
-            StringUtil.copyPartialMatches(args[1], List.of("grant", "revoke"), suggestions);
-        } else if (args.length == 3) {
-            for (org.bukkit.entity.Player player : sender.getServer().getOnlinePlayers()) {
-                StringUtil.copyPartialMatches(args[2], List.of(player.getName()), suggestions);
+
+        if (label.contains("permission")) {
+            if (args.length == 1) {
+                for (org.bukkit.entity.Player player : sender.getServer().getOnlinePlayers()) {
+                    StringUtil.copyPartialMatches(args[0], List.of(player.getName()), suggestions);
+                }
+            } else if (args.length == 2) {
+                StringUtil.copyPartialMatches(args[1], List.of("grant", "revoke"), suggestions);
+            } else {
+                StringUtil.copyPartialMatches(args[2], Player_Permission.Permission_list, suggestions);
             }
+
+            return suggestions;
         }
 
-        return suggestions;
+        if (label.contains("generatetoken")) {
+            StringUtil.copyPartialMatches(args[0], Player_Permission.Permission_list, suggestions);
+            return suggestions;
+        }
+
+        return null;
     }
 }
