@@ -15,4 +15,6 @@ public enum Player_Permission {
     public static final List<String> Permission_list = Arrays.stream(Player_Permission.values())
             .map(Enum::name)
             .collect(Collectors.toList());
+
+    public static String Permission_list_string = String.join(" ", Permission_list);
 }

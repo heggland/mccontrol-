@@ -6,6 +6,9 @@ import org.hegglandtech.mccontrol.storage.MemoryStorage;
 
 import java.util.Arrays;
 
+import static org.hegglandtech.mccontrol.utils.Player_Permission.Permission_list;
+import static org.hegglandtech.mccontrol.utils.Player_Permission.Permission_list_string;
+
 public class PermissionCommands {
 
     org.bukkit.entity.Player player;
@@ -37,7 +40,12 @@ public class PermissionCommands {
 
         this.playerIdentifier = args[1]; // player name or player UUID
         this.action = args[2];
-        this.permission = String.join(" ", Arrays.copyOfRange(args, 3, args.length));
+
+        if (args[3].equals("-all")) {
+            this.permission = Permission_list_string;
+        } else {
+            this.permission = String.join(" ", Arrays.copyOfRange(args, 3, args.length));
+        }
 
         updatePlayerPermission();
     }
@@ -84,6 +92,10 @@ public class PermissionCommands {
 
             String permissions = this.command.replace("generatetoken ", "");
 
+            if (permissions.equals("-all")) {
+                permissions = Permission_list_string;
+            }
+
             playerPermission.createEmptyPlayer(tokenString, permissions);
         }
     }
@@ -102,6 +114,10 @@ public class PermissionCommands {
 
     private boolean argsValid() {
         return args != null && args.length != 0;
+    }
+
+    private String getPermissions() {
+        return Permission_list_string;
     }
 
 }
