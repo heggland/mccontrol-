@@ -64,6 +64,14 @@ public class PermissionCommands {
         player.sendMessage("See the console for memory");
     }
 
+    public void reloadMemory() {
+        if (!isAdmin()) return;
+
+        MemoryStorage memoryStorage = Mccontrol.getInstance().getMemoryStorage();
+        memoryStorage.loadMemory();
+        player.sendMessage("Memory reloaded");
+    }
+
     public boolean isAdmin() {
         if (!player.isOp()) {
             player.sendMessage("You are not allowed to use commands");

@@ -19,6 +19,11 @@ commands:
     usage: getmemory
     permission: mccontrol.admin
 
+  reloadmemory:
+    description: Reload the memory
+    usage: reloadmemory
+    permission: mccontrol.admin
+
   generatetoken:
     description: Generate a token
     usage: generatetoken <permissions[]>
