@@ -1,7 +1,7 @@
-package org.hegglandtech.mccontrol.utils;
+package org.hegglandtech.mccontrol.storage;
 
 import org.hegglandtech.mccontrol.Mccontrol;
-import org.hegglandtech.mccontrol.storage.MemoryStorage;
+import org.hegglandtech.mccontrol.utils.Player;
 
 import java.util.List;
 import java.util.Objects;

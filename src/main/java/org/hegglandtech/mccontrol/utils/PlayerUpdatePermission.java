@@ -1,6 +1,7 @@
 package org.hegglandtech.mccontrol.utils;
 
 import org.hegglandtech.mccontrol.Mccontrol;
+import org.hegglandtech.mccontrol.storage.LoadPlayerFromMemory;
 import org.hegglandtech.mccontrol.storage.MemoryStorage;
 
 import java.util.Arrays;
