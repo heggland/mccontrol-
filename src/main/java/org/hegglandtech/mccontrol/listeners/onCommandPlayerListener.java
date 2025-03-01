@@ -6,6 +6,8 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.plugin.PluginManager;
 import org.hegglandtech.mccontrol.Mccontrol;
 import org.hegglandtech.mccontrol.utils.*;
+import org.hegglandtech.mccontrol.utils.tabcompleter.GenerateTokenTabCompleter;
+import org.hegglandtech.mccontrol.utils.tabcompleter.PermissionTabCompleter;
 
 import java.util.Objects;
 
@@ -49,6 +51,9 @@ public class onCommandPlayerListener implements Listener {
 
             Objects.requireNonNull(Mccontrol.getInstance().getCommand("mccontrol:permission"))
                     .setTabCompleter(new PermissionTabCompleter());
+
+            Objects.requireNonNull(Mccontrol.getInstance().getCommand("mccontrol:generatetoken"))
+                    .setTabCompleter(new GenerateTokenTabCompleter());
 
             return true;
         } catch (Exception e) {
