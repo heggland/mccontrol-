@@ -10,6 +10,8 @@ import java.util.List;
 public class Storage {
 
     private final File file;
+    private final String filePath;
+
 
     // No-argument constructor that defaults to "mccontrol-config.txt"
     public Storage() {
@@ -35,8 +37,14 @@ public class Storage {
         }
 
         this.file = new File(pluginFolder, filePath);
+        this.filePath = filePath;
 
-        // Ensure the file exists
+        createFile();
+
+    }
+
+
+    public void createFile() {
         try {
             if (!file.exists()) {
                 if (file.getParentFile() != null && !file.getParentFile().exists()) {
@@ -149,7 +157,8 @@ public class Storage {
         try {
             return Files.readAllLines(Path.of(file.getPath()));
         } catch (IOException e) {
-            throw new RuntimeException("Could not read lines from file: " + file.getPath());
+            createFile();
         }
+        return List.of();
     }
 }
