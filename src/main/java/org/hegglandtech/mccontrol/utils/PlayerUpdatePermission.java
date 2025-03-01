@@ -77,7 +77,7 @@ public class PlayerUpdatePermission {
     public void createEmptyPlayer(String token, String permissions) {
         try {
             Player playerData = new Player(token, permissions);
-            save(playerData, token);
+            memoryStorage.updateMemory(playerData.toString());
         } catch (Exception e) {
             ServerLogger.print("Error creating player");
             player.sendMessage("Error creating player");
@@ -97,13 +97,23 @@ public class PlayerUpdatePermission {
         playerData.setName(player.getName());
         playerData.setToken("");
 
-        save(playerData);
+        save(playerData, token);
     }
 
     private static void save(Player playerData, String token) {
         if (!playerData.getToken().equals(token)) return;
 
+        List<String> memory = memoryStorage.getMemory();
+
+        for (String line : memory) {
+            if (line.contains(playerData.getToken())) {
+                memory.remove(line);
+                break;
+            }
+        }
+
         memoryStorage.updateMemory(playerData.toString());
+        memoryStorage.writeToFile(memoryStorage.getMemory(true));
     }
 
     private static void save(Player playerData) {
@@ -111,10 +121,6 @@ public class PlayerUpdatePermission {
 
         for (String line : memory) {
             if (line.contains(playerData.getUuid())) {
-                memory.remove(line);
-                break;
-            }
-            if (line.contains(playerData.getToken())) {
                 memory.remove(line);
                 break;
             }
