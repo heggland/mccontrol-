@@ -136,6 +136,7 @@ public class Player {
         try {
             for (var field : this.getClass().getDeclaredFields()) {
                 field.setAccessible(true); // Access private fields
+                if (field.get(this) == null || field.get(this) == "") continue;
                 sb.append(field.getName())
                         .append("='")
                         .append(field.get(this))
