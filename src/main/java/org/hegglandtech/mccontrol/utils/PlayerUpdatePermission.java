@@ -15,8 +15,12 @@ public class PlayerUpdatePermission {
 
     public PlayerUpdatePermission(org.bukkit.entity.Player playerSender) {
         memoryStorage = Mccontrol.getInstance().getMemoryStorage();
-        loadPlayerFromMemory = new LoadPlayerFromMemory();
         player = playerSender;
+        if (player == null) {
+            loadPlayerFromMemory = new LoadPlayerFromMemory();
+        } else {
+            loadPlayerFromMemory = new LoadPlayerFromMemory(player);
+        }
     }
 
     public void update(String playerName, String action, String permission) {
@@ -81,10 +85,11 @@ public class PlayerUpdatePermission {
     }
 
     public void updatePlayerUsingToken(String token) {
+        if (player == null) return;
+
         Player playerData = loadPlayerFromMemory.getPlayerByToken(token);
 
         if (playerData == null) {
-            ServerLogger.print("Token " + token + " not found.");
             return;
         }
 
@@ -115,9 +120,6 @@ public class PlayerUpdatePermission {
             }
         }
 
-        ServerLogger.print("---");
-        ServerLogger.print(playerData.toString());
-        ServerLogger.print("---");
         memoryStorage.updateMemory(playerData.toString());
         memoryStorage.writeToFile(memoryStorage.getMemory(true));
     }
