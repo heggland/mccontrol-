@@ -32,6 +32,11 @@ public class onCommandPlayerListener implements Listener {
             return;
         }
 
+        if (command.equals("reloadmemory")) {
+            permissionCommands.reloadMemory();
+            return;
+        }
+
         if (command.startsWith("token")) {
             permissionCommands.validateToken();
             return;

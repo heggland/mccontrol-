@@ -1,6 +1,7 @@
 package org.hegglandtech.mccontrol.utils;
 
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.*;
 
 public class Player {
@@ -47,6 +48,8 @@ public class Player {
                 String key = keyValue[0].trim();
                 String value = keyValue[1].trim().replaceAll("^'|'$", ""); // Remove surrounding quotes
 
+                String dateNow = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+
                 switch (key) {
                     case "uuid":
                         this.uuid = value;
@@ -58,7 +61,7 @@ public class Player {
                         this.createdDate = value;
                         break;
                     case "modifiedDate":
-                        this.modifiedDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+                        this.modifiedDate = dateNow;
                         break;
                     case "permissions":
                         // Extract permissions list from the format "[perm1, perm2]"
@@ -71,6 +74,9 @@ public class Player {
                     default:
                         throw new IllegalArgumentException("Unexpected field: " + key);
                 }
+
+                if (this.createdDate == null) this.createdDate = dateNow;
+                this.modifiedDate = dateNow;
             }
         } catch (Exception e) {
             throw new IllegalArgumentException("Error parsing playerEntry: " + playerEntry, e);

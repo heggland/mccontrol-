@@ -17,8 +17,9 @@ A simple way to manage player permissions for your server without all the bloat.
 ### ⚙️ **Commands:**
 - /mccontrol:permission grant|revoke <player>|<uuid> <permission|permissions|-all>
 - /mccontrol:generatetoken <permission|permissions|-all>
-- /mccontrol:getmemory
 - /mccontrol:token <token>
+- /mccontrol:getmemory
+- /mccontrol:reloadmemory
 
 ### 🚀 Roadmap:
 

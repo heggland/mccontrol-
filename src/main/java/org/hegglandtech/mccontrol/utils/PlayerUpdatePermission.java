@@ -95,7 +95,6 @@ public class PlayerUpdatePermission {
 
         playerData.setUuid(player.getUniqueId().toString());
         playerData.setName(player.getName());
-        playerData.setToken("");
 
         save(playerData, token);
     }
@@ -103,16 +102,19 @@ public class PlayerUpdatePermission {
     private static void save(Player playerData, String token) {
         if (!playerData.getToken().equals(token)) return;
 
+        playerData.setToken("");
+
         List<String> memory = memoryStorage.getMemory();
 
         for (String line : memory) {
-            if (line.contains(playerData.getToken())) {
+            if (line.contains(token)) {
                 memory.remove(line);
                 break;
             }
         }
 
         memoryStorage.updateMemory(playerData.toString());
+
         memoryStorage.writeToFile(memoryStorage.getMemory(true));
     }
 

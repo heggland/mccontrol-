@@ -149,7 +149,7 @@ public class Storage {
         try {
             return Files.readAllLines(Path.of(file.getPath()));
         } catch (IOException e) {
-            throw new RuntimeException("Could not read lines from file: " + file.getPath(), e);
+            throw new RuntimeException("Could not read lines from file: " + file.getPath());
         }
     }
 }

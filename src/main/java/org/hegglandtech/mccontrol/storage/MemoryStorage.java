@@ -1,5 +1,7 @@
 package org.hegglandtech.mccontrol.storage;
 
+import org.hegglandtech.mccontrol.utils.ServerLogger;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,18 +18,10 @@ public class MemoryStorage extends Storage {
         List<String> file = super.readFile();
 
         file.forEach(this::updateMemory);
-
     }
 
     public List<String> getMemory() {
         return this.memory;
-    }
-
-    // Update memory by adding a new line if it doesn't exist
-    public void updateMemory(String line) {
-        if (!this.memory.contains(line)) {
-            this.memory.add(line);
-        }
     }
 
     // Deprecated method
@@ -41,6 +35,18 @@ public class MemoryStorage extends Storage {
         }
         return this.memory.toString();
     }
+
+    // Update memory by adding a new line if it doesn't exist
+    public void updateMemory(String line) {
+        if (!this.memory.contains(line)) {
+            this.memory.add(line);
+        }
+    }
+
+    public void clearMemory() {
+        this.memory.clear();
+    }
+
 
     @Override
     public String toString() {

@@ -69,10 +69,6 @@ public class LoadPlayerFromMemory {
 
         if (playerEntry == null) return null;
 
-        Player player = new Player(playerEntry);
-
-        if (Objects.equals(player.getToken(), "")) return null;
-
-        return player;
+        return new Player(playerEntry);
     }
 }
