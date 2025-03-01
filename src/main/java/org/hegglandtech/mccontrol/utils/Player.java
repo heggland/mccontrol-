@@ -58,7 +58,7 @@ public class Player {
                         this.createdDate = value;
                         break;
                     case "modifiedDate":
-                        this.modifiedDate = value;
+                        this.modifiedDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
                         break;
                     case "permissions":
                         // Extract permissions list from the format "[perm1, perm2]"
