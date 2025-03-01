@@ -93,7 +93,6 @@ public class Player {
     public void setPermission(List<String> permission) {
 
         for (String perm : permission) {
-            // check if String.valueOf(perm) is found in Permission_list
             if (!Player_Permission.Permission_list.contains(String.valueOf(perm))) {
                 continue;
             }
