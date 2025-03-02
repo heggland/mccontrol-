@@ -11,6 +11,8 @@ public class listeners {
         new onEntityInteractListener().load();
         new onInventoryOpenEventListener().load();
 
+        new CustomListener(ListenerMode.ALWAYS_ACTIVE).load();
+
     }
 
 }
