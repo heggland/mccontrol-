@@ -14,26 +14,16 @@ import org.hegglandtech.mccontrol.utils.Player_Permission;
 public class onInventoryOpenEventListener implements Listener {
 
     @EventHandler
-    public void onChestOpen(InventoryOpenEvent event) {
-
-
+    public void handleInventoryOpen(InventoryOpenEvent event) {
         Player player = (Player) event.getPlayer();
 
-        Inventory inventory = event.getInventory();
-        InventoryType type = inventory.getType();
+        boolean hasPermission = new PlayerCheckPermission(player).validate(Player_Permission.canBuild);
 
-        for (InventoryType validType : InventoryType.values()) {
-            if (type == validType) {
-
-                PlayerCheckPermission playerTest = new PlayerCheckPermission(player);
-
-                if (!playerTest.validate(Player_Permission.canBuild)) {
-                    player.sendMessage("You are not allowed to open " + type + "!");
-                    event.setCancelled(true);
-                    break;
-                }
-            }
+        if (!hasPermission) {
+            player.sendMessage("You are not allowed to open this inventory.");
+            event.setCancelled(true);
         }
+
     }
 
     public boolean load() {

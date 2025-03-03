@@ -12,12 +12,12 @@ import org.hegglandtech.mccontrol.utils.Player_Permission;
 public class onBlockPlaceListener implements Listener {
 
     @EventHandler
-    public void onBlockPlace(BlockPlaceEvent event) {
+    public void handleBlockPlace(BlockPlaceEvent event) {
         Player player = event.getPlayer();
-        PlayerCheckPermission playerTest = new PlayerCheckPermission(player);
-        boolean test = playerTest.validate(Player_Permission.canBuild);
 
-        if (!test) {
+        boolean hasPermission = new PlayerCheckPermission(player).validate(Player_Permission.canBuild);
+
+        if (!hasPermission) {
             player.sendMessage("You are not allowed to place blocks");
             event.setCancelled(true);
         }

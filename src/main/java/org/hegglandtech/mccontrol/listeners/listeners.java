@@ -10,6 +10,7 @@ public class listeners {
         new onBucketEmptyListener().load();
         new onEntityInteractListener().load();
         new onInventoryOpenEventListener().load();
+        new onProjectileLaunchEvent().load();
 
     }
 
