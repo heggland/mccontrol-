@@ -1,4 +1,4 @@
-package org.hegglandtech.mccontrol.utils;
+package org.hegglandtech.mccontrol.enums;
 
 import java.util.Arrays;
 import java.util.List;

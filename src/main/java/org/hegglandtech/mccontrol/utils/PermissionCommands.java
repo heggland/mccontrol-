@@ -6,8 +6,7 @@ import org.hegglandtech.mccontrol.storage.MemoryStorage;
 
 import java.util.Arrays;
 
-import static org.hegglandtech.mccontrol.utils.Player_Permission.Permission_list;
-import static org.hegglandtech.mccontrol.utils.Player_Permission.Permission_list_string;
+import static org.hegglandtech.mccontrol.enums.Player_Permission.Permission_list_string;
 
 public class PermissionCommands {
 

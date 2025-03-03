@@ -8,7 +8,7 @@ import org.bukkit.plugin.PluginManager;
 import org.hegglandtech.mccontrol.Mccontrol;
 import org.hegglandtech.mccontrol.enums.Bucket_Types;
 import org.hegglandtech.mccontrol.utils.PlayerCheckPermission;
-import org.hegglandtech.mccontrol.utils.Player_Permission;
+import org.hegglandtech.mccontrol.enums.Player_Permission;
 
 public class onBucketEmptyListener implements Listener {
 

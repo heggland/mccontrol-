@@ -7,7 +7,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.plugin.PluginManager;
 import org.hegglandtech.mccontrol.Mccontrol;
 import org.hegglandtech.mccontrol.utils.PlayerCheckPermission;
-import org.hegglandtech.mccontrol.utils.Player_Permission;
+import org.hegglandtech.mccontrol.enums.Player_Permission;
 
 public class onBlockPlaceListener implements Listener {
 

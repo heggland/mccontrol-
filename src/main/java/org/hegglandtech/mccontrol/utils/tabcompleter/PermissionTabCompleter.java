@@ -4,7 +4,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.util.StringUtil;
-import org.hegglandtech.mccontrol.utils.Player_Permission;
+import org.hegglandtech.mccontrol.enums.Player_Permission;
 
 import java.util.ArrayList;
 import java.util.Arrays;

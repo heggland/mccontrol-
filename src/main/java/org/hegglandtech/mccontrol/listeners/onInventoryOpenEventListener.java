@@ -4,12 +4,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryOpenEvent;
-import org.bukkit.event.inventory.InventoryType;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.PluginManager;
 import org.hegglandtech.mccontrol.Mccontrol;
 import org.hegglandtech.mccontrol.utils.PlayerCheckPermission;
-import org.hegglandtech.mccontrol.utils.Player_Permission;
+import org.hegglandtech.mccontrol.enums.Player_Permission;
 
 public class onInventoryOpenEventListener implements Listener {
 

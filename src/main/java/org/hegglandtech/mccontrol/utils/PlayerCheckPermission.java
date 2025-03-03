@@ -1,5 +1,6 @@
 package org.hegglandtech.mccontrol.utils;
 
+import org.hegglandtech.mccontrol.enums.Player_Permission;
 import org.hegglandtech.mccontrol.storage.LoadPlayerFromMemory;
 
 public class PlayerCheckPermission extends Player {
