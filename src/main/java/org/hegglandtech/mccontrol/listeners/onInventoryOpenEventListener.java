@@ -15,7 +15,7 @@ public class onInventoryOpenEventListener implements Listener {
     public void handleInventoryOpen(InventoryOpenEvent event) {
         Player player = (Player) event.getPlayer();
 
-        boolean hasPermission = new PlayerCheckPermission(player).validate(Player_Permission.canBuild);
+        boolean hasPermission = new PlayerCheckPermission(player).validate(Player_Permission.canOpenInventory);
 
         if (!hasPermission) {
             player.sendMessage("You are not allowed to open this inventory.");

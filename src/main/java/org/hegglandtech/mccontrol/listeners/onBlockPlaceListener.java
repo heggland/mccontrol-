@@ -15,7 +15,7 @@ public class onBlockPlaceListener implements Listener {
     public void handleBlockPlace(BlockPlaceEvent event) {
         Player player = event.getPlayer();
 
-        boolean hasPermission = new PlayerCheckPermission(player).validate(Player_Permission.canBuild);
+        boolean hasPermission = new PlayerCheckPermission(player).validate(Player_Permission.canBuildBlock);
 
         if (!hasPermission) {
             player.sendMessage("You are not allowed to place blocks");

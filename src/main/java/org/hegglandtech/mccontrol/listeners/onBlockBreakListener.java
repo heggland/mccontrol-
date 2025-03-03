@@ -16,7 +16,7 @@ public class onBlockBreakListener implements Listener {
     public void onBlockPlace(BlockBreakEvent event) {
         Player player = event.getPlayer();
 
-        boolean hasPermission = new PlayerCheckPermission(player).validate(Player_Permission.canBuild);
+        boolean hasPermission = new PlayerCheckPermission(player).validate(Player_Permission.canBreakBlock);
 
         if (!hasPermission) {
             player.sendMessage("You are not allowed to break blocks");

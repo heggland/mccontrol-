@@ -8,8 +8,10 @@ public enum Player_Permission {
     canPvp,
     canPva,
     canUseArrows,
-    canBuild,
-    canUseBucket;
+    canBuildBlock,
+    canBreakBlock,
+    canUseBucket,
+    canOpenInventory;
 
     // Public static list containing all enum values as strings
     public static final List<String> Permission_list = Arrays.stream(Player_Permission.values())
